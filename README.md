@@ -12,6 +12,11 @@ where a,b are **positive integers in string format**.
 
 # Criss-Cross multiplication # 
 
+Unlike the Karatsuba algorithm, the Criss-Cross algorithm can also be used to manually multiply numbers in a SINGLE line using pen and paper. And obviously, it is faster than the grade-school algorithm for multiplying numbers.
+
+For more explanations on the algorithm refer to :
+1. Page 27 in this book
+2. 
 # How my code works #
 
 # How testing was carried out #
