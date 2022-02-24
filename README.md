@@ -15,13 +15,15 @@ where a,b are **positive integers in string format**.
 # How my code works #
 
 # How testing was carried out #
+There are 1000 test cases.
 
-# Source of other algorithms used for comparison #
-The Karatsuba algorithm used for testing was taken from here :
+Each test case generates a set of 2 random numbers whose lengths vary between 100 and 1000 digits.
 
-The grade-school multiplication algorithm used for testing was taken from here :
+A counter is incremented each time, the vedic algorithm performs better than the karatsuba algorithm.
 
-Another version of vedic math multiplication method, i presume, was found here : 
+In the end, the success rate is calculated.
 
-All the above algorithms perform worse than the criss-cross method.
+# Source of other algorithms #
+The Karatsuba algorithm used for testing was copied from user LogicalX : https://www.codewars.com/kata/reviews/59d4a77792836c2ee100048b/groups/5f46c09915fbdc0001312497
 
+I also tested other versions of the Karatsuba algorithm but the result was same.
