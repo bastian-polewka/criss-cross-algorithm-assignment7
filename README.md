@@ -33,7 +33,5 @@ A counter is incremented each time, the vedic algorithm performs better than the
 
 In the end, the success rate is calculated.
 
-# Source of other algorithms #
-The Karatsuba algorithm used for testing was copied from user LogicalX : https://www.codewars.com/kata/reviews/59d4a77792836c2ee100048b/groups/5f46c09915fbdc0001312497
-
-I also tested other versions of the Karatsuba algorithm but the result was same.
+# Current limitation #
+The number of digits in both strings must be less than 2^63 (because of long long data type). This also means that ![image](https://user-images.githubusercontent.com/65414576/155576502-d5ba37c3-f39e-4775-9e05-2ba071b073e1.png)
