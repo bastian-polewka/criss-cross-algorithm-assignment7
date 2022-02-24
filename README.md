@@ -9,6 +9,6 @@ where a,b are **positive integers in string format**.
 
 # Criss-Cross multiplication # 
 
-# How the algorithm works #
+# How my code works #
 
 # #
