@@ -16,7 +16,7 @@ Unlike the Karatsuba algorithm, the Criss-Cross algorithm can also be used to ma
 
 For more explanations on the algorithm refer to :
 1. Page 27 in this book
-2. 
+2. https://www.youtube.com/watch?v=iNQ9Mj_zS-I&ab_channel=SumanTVEducation
 # How my code works #
 
 # How testing was carried out #
