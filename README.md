@@ -14,4 +14,14 @@ where a,b are **positive integers in string format**.
 
 # How my code works #
 
-# #
+# How testing was carried out #
+
+# Source of other algorithms used for comparison #
+The Karatsuba algorithm used for testing was taken from here :
+
+The grade-school multiplication algorithm used for testing was taken from here :
+
+Another version of vedic math multiplication method, i presume, was found here : 
+
+All the above algorithms perform worse than the criss-cross method.
+
