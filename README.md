@@ -18,7 +18,12 @@ For more explanations on the algorithm refer to :
 1. Page 27 in this book
 2. https://www.youtube.com/watch?v=iNQ9Mj_zS-I&ab_channel=SumanTVEducation
 # How my code works #
+min and max kee keep track of region within which multiplication will take place.
 
+When the numbers differ in the number of digits, the normal algorithm adds leading zeroes to the smaller number to make it the same length as the bigger number.
+However, this process, when implemented programmatically, increases the execution time because at the end the answer might contain leading zeroes which must be removed.
+
+To bypass this problem, I 
 # How testing was carried out #
 There are 1000 test cases.
 
