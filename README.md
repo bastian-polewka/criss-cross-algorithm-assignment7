@@ -1,5 +1,5 @@
 # VedicMultiplicationAlgorithm
-Also known as the Criss-Cross multiplication algorithm, this simple algorithm multiplies large string numbers in atleast 90% LESS time than Karatsuba algorithm. It also outperforms other multiplication algorithms that 
+Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm requiring no advanced math knowledge,  multiplies large string numbers in atleast 90% LESS time than Karatsuba algorithm. It also outperforms other multiplication algorithms s
 ## Time complexity ##
 ![image](https://user-images.githubusercontent.com/65414576/155485833-6879c3a5-96af-46da-8bd8-24ec270fc61a.png)
 
