@@ -38,12 +38,59 @@ Example :
 `j` is the index used to iterate over `b` within region bounded by min,max.
 
 
-# Case 1 : `a` and  `b` are of the same length # 
+# Case 1 : `a` and  `b` are of the same length `n` # 
+This is the simplest case. The total number of steps required is `2n-1`. (There are `n` patterns +  `n` reflected patterns. However, the `n`th pattern is counted twice so we minus 1.)
+
+The number of 1-digit multiplication (or the number of lines drawn) at each step can be found as follows :
+```cpp
+        if (currentstep <= n) {lines = currentstep;}
+        else {lines = n - (currentstep - n);} // or 2*n - currentstep
+```
+
+| Step number | Number of 1-digit multiplication required |
+| :---        |    :----:   |
+| 1      | 1       |
+| 2   | 2        | 
+| 3   | 3        | 
+| 4   | 4        | 
+| ...   | ...        | 
+| n   | n        | 
+| n+1  | n-1        | 
+| n+2   | n-2        | 
+| n+3   | n-3        | 
+| ...   | ...        | 
+| 2n-1   | 1        | 
+
+At each step, we will compute the sum of all the 1-digit multiplications required. From this sum we will obtain the carry for the next step and a digit of our answer. 
+
+## The pseudocode for Case 1 ##
+```
+Initialise the total number of steps
+Initialise min and max to n-1
+
+For each step
+        Determine the number of 1-digit multiplication to be carried out
+        Initialise sum to 0
+        When the step number becomes > n (or when min becomes negative), set min to 0 and decrement max.
+        
+        For each 1-digit multiplication
+                Increment sum
+                Modify counters to move to next 1-digit multiplication
+        
+        Add previous carry to sum
+        Update carry and answer
+        Decrement min
+
+If carry is non-zero, concatenate it to the left of answer.
+Return answer
+
+```
 
 # Case 2 : `b` has fewer digits than `a` # 
+This case could be eliminated if we simply make both `a` and `b` the same length initially by adding leading zeroes. Then, before returning our answer, we remove any leading zeroes. However, this approach wastes a lot of time when both strings are very long.
 
+To bypass this problem, we simply reduce the total number of steps to eliminate cases where the 1-digit multiplication involves a leading zero.
 
-To bypass this problem, I 
 # How testing was carried out #
 There are 1000 test cases.
 
@@ -54,4 +101,5 @@ A counter is incremented each time, the vedic algorithm performs better than the
 In the end, the success rate is calculated.
 
 # Current limitation #
-The sum of the number of digits in both strings must be less than 2^63 (because of long long data type is used). 
+
+'a' and 'b' must have less than 2^32 digits because string data type can only store 2^32 characters.
