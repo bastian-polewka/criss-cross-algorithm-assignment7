@@ -1,5 +1,8 @@
 # VedicMultiplicationAlgorithm
-Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge,  multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit long string numbers can be multiplied almost instantly.
+Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge,  multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit string numbers can be multiplied almost instantly.
+
+To my surprise, this method is not as popular as other multiplication algorithms despite being faster and easier to understand. The aim of this repository is give a brief explanation of the algorithm as well as my implementation of the algorithm using C++. Unlike the Karatsuba algorithm, the Criss-Cross algorithm can also be used to manually multiply numbers in a SINGLE line using pen and paper. And obviously, it is faster than the grade-school algorithm for multiplying numbers.
+
 ## Time complexity ##
 ![image](https://user-images.githubusercontent.com/65414576/155485833-6879c3a5-96af-46da-8bd8-24ec270fc61a.png)
 
@@ -10,9 +13,14 @@ vedic(a, b)
 ``` 
 where a,b are **positive integers in string format**.
 
-# Criss-Cross multiplication # 
+# Criss-Cross multiplication explanation # 
 
-Unlike the Karatsuba algorithm, the Criss-Cross algorithm can also be used to manually multiply numbers in a SINGLE line using pen and paper. And obviously, it is faster than the grade-school algorithm for multiplying numbers.
+Also, the method can be implemented from left to right as well. 
+
+I don't have a formal proof of why this algorithm works but if we compare the grade-school algorithm and this algorithm side-by-side, it becomes obvious.  
+![image](https://user-images.githubusercontent.com/65414576/155765960-2ec47174-1825-4c9d-8fa9-94a6a6086361.png)
+
+The advantage of the criss-cross algorithm is that it remembers smaller numbers and 
 
 For more explanations on the algorithm refer to :
 1. Page 27 in this book
