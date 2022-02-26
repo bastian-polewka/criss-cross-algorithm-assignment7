@@ -1,31 +1,51 @@
-# VedicMultiplicationAlgorithm
-Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge,  multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit string numbers can be multiplied almost instantly.
+# Table of contents
+1. [VedicMultiplicationAlgorithm](#VedicMultiplicationAlgorithm)
+2. [Criss-Cross multiplication explanation](#Cross)
+3. [Code implementation + explanation](#Code implementation + explanation)
 
-To my surprise, this method is not as popular as other multiplication algorithms despite being faster and easier to understand. The aim of this repository is give a brief explanation of the algorithm as well as my implementation of the algorithm using C++. Unlike the Karatsuba algorithm, the Criss-Cross algorithm can also be used to manually multiply numbers in a SINGLE line using pen and paper. And obviously, it is faster than the grade-school algorithm for multiplying numbers.
+# VedicMultiplicationAlgorithm <a name="VedicMultiplicationAlgorithm"></a>
+Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge, multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit string numbers can be multiplied almost instantly.
+
+The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
+
+Unlike the Karatsuba algorithm, the Criss-Cross algorithm can also be used to manually multiply any number in a SINGLE line using pen and paper or even mentally. And obviously, this algorithm is faster than the grade-school algorithm for multiplying numbers.
 
 ## Time complexity ##
 ![image](https://user-images.githubusercontent.com/65414576/155485833-6879c3a5-96af-46da-8bd8-24ec270fc61a.png)
 
 Worst case scenario is when the 2 digits have the same number of digits. 
+
+More explanation about the time complexity is found below.
+
 ## Function call ##
 ```cpp
 vedic(a, b)
 ``` 
 where a,b are **positive integers in string format**.
 
-# Criss-Cross multiplication explanation # 
+# Criss-Cross multiplication explanation # <a name="Cross"></a>
+Here are a few things to note :
+- The multiplicationa algorithm follows a pattern.
+- If `a` has `n` digits and `b` has `m` digits, where `n>=m`, then to compute `a*b`, there is at most `2*n - 1` single digit product to be carried out.
 
-Also, the method can be implemented from left to right as well. 
+### Pattern for 2-digit multiplication ### 
+
+### Pattern for 3-digit multiplication ###
+
+### Pattern for 4-digit multiplication ###
+
+### Full explanation on how to carry out multiplication ###
 
 I don't have a formal proof of why this algorithm works but if we compare the grade-school algorithm and this algorithm side-by-side, it becomes obvious.  
 ![image](https://user-images.githubusercontent.com/65414576/155765960-2ec47174-1825-4c9d-8fa9-94a6a6086361.png)
 
-The advantage of the criss-cross algorithm is that it remembers smaller numbers and 
+The advantage of the criss-cross algorithm over the grade-school algorithm is that it works with smaller numbers (it adds single-digit products and resets the sum each time).
 
 For more explanations on the algorithm refer to :
 1. Page 27 in this book
 2. https://www.youtube.com/watch?v=iNQ9Mj_zS-I&ab_channel=SumanTVEducation
-# How my code works #
+
+# Code implementation + explanation # <a name="Code implementation + explanation"></a>
 
 ```cpp
         ll i = max, j = min;
@@ -41,9 +61,9 @@ Example :
 
 ![image](https://user-images.githubusercontent.com/65414576/155732674-d9b96441-29d1-42d6-99b4-a4a211b23a46.png)
 
-`i` is the index used to iterate over `a` within region bounded by min,max.
+`i` is the index used to iterate over `a` within region bounded by `min`, `max`.
 
-`j` is the index used to iterate over `b` within region bounded by min,max.
+`j` is the index used to iterate over `b` within region bounded by `min`, `max`.
 
 
 ## Case 1 : Both `a` and  `b` have `n` digits ## 
@@ -108,7 +128,9 @@ The logic is same as Case 1 with a couple of IF statements more.
 
 First, we find the expected number of 1-digit multiplication if `a` and `b` were the same length :
 ```cpp
-        if (step <= asize) {lines = step;}
+        if (step <= asize) {
+             lines = step;
+        }
         else {
             lines= asize - (step- asize); // do not simplify as 2*asize might overflow
         }
@@ -121,9 +143,9 @@ When all the digits of `b` have been traversed, `min` becomes negative. If `a` a
             max--;
         }
 ```
-The following gif shows how min and max varies :
+The following gif shows how `min` and `max` changes with each step :
 
-Then we reduce the number of 1-digit multiplication by taking into consideration the number of leading zeroes would have been added to `b` to make it the same length as `a`.
+Then we reduce the number of 1-digit multiplication as follows :
 
 ```cpp
         if (min < 0) {
@@ -137,15 +159,16 @@ Then we reduce the number of 1-digit multiplication by taking into consideration
             }
         }
 ```
+The rest of the code is same as that in Case 1.
 
 # How testing was carried out #
 There are 1000 test cases.
 
 Each test case generates a set of 2 random numbers whose lengths vary between 100 and 1000 digits.
 
-A counter is incremented each time, the vedic algorithm performs better than the karatsuba algorithm.
+A counter `c` is incremented each time, the vedic algorithm performs better than the karatsuba algorithm.
 
-In the end, the success rate is calculated.
+In the end, the success rate (number of times out of 1000 `vedic()` took less time) is calculated.
 
 # Current limitation #
 
