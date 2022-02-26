@@ -2,6 +2,11 @@
 1. [VedicMultiplicationAlgorithm](#VedicMultiplicationAlgorithm)
 2. [Criss-Cross multiplication explanation](#Cross)
 3. [Code implementation + explanation](#CodeImp)
+4. [How testing was carried out](#testing)
+5. [Limitation](#limitation)
+6. [Improvement](#improvement)
+
+
 
 # VedicMultiplicationAlgorithm  <a name="VedicMultiplicationAlgorithm"></a>
 Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge, multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit string numbers (numbers greater than 10^100) can be multiplied in less than 30 seconds.
@@ -162,7 +167,7 @@ Then we reduce the number of 1-digit multiplication as follows :
 ```
 The rest of the code is same as that in Case 1.
 
-# How testing was carried out #
+# How testing was carried out  <a name="testing"></a>
 There are 1000 test cases.
 
 Each test case generates a set of 2 random numbers whose lengths vary between 100 and 1000 digits.
@@ -171,9 +176,9 @@ A counter `c` is incremented each time, the vedic algorithm performs better than
 
 In the end, the success rate (number of times out of 1000 `vedic()` took less time) is calculated.
 
-# Current limitation #
+# Current limitation <a name="limitation"></a>
 `a` and `b` must have less than 2^32 digits because string data type can only store 2^32 characters.
 
-# Improvements #
+# Improvements <a name="improvement"></a>
 - Do not use long long data type. Instead save the sum and the carry as strings.
 
