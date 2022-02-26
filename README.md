@@ -58,6 +58,7 @@ For more explanations on the algorithm refer to :
 ```min``` and ```max``` keep keep track of region within which the cross-multiplication will take place.
 
 Example :
+![](3x3+min+max[2975].gif)
 
 ![image](https://user-images.githubusercontent.com/65414576/155732674-d9b96441-29d1-42d6-99b4-a4a211b23a46.png)
 
