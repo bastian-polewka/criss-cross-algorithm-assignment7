@@ -1,9 +1,9 @@
 # Table of contents
 1. [VedicMultiplicationAlgorithm](#VedicMultiplicationAlgorithm)
 2. [Criss-Cross multiplication explanation](#Cross)
-3. [Code implementation + explanation](#Code implementation + explanation)
+3. [Code implementation + explanation](#CodeImp)
 
-# VedicMultiplicationAlgorithm <a name="VedicMultiplicationAlgorithm"></a>
+# VedicMultiplicationAlgorithm  <a name="VedicMultiplicationAlgorithm"></a>
 Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge, multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit string numbers can be multiplied almost instantly.
 
 The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
@@ -23,7 +23,7 @@ vedic(a, b)
 ``` 
 where a,b are **positive integers in string format**.
 
-# Criss-Cross multiplication explanation # <a name="Cross"></a>
+# Criss-Cross multiplication explanation <a name="Cross"></a>
 Here are a few things to note :
 - The multiplicationa algorithm follows a pattern.
 - If `a` has `n` digits and `b` has `m` digits, where `n>=m`, then to compute `a*b`, there is at most `2*n - 1` single digit product to be carried out.
@@ -45,7 +45,7 @@ For more explanations on the algorithm refer to :
 1. Page 27 in this book
 2. https://www.youtube.com/watch?v=iNQ9Mj_zS-I&ab_channel=SumanTVEducation
 
-# Code implementation + explanation # <a name="Code implementation + explanation"></a>
+# Code implementation + explanation  <a name="CodeImp"></a>
 
 ```cpp
         ll i = max, j = min;
