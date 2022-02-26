@@ -4,7 +4,7 @@
 3. [Code implementation + explanation](#CodeImp)
 
 # VedicMultiplicationAlgorithm  <a name="VedicMultiplicationAlgorithm"></a>
-Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge, multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit string numbers (numbers greater than googolplex) can be multiplied almost instantly.
+Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge, multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit string numbers (numbers greater than 10^100) can be multiplied in less than 30 seconds.
 
 The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
 
