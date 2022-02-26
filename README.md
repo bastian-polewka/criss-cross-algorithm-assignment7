@@ -100,9 +100,43 @@ Return answer
 ```
 
 ## Case 2 : `b` has fewer digits than `a` ## 
-This case could be eliminated if we simply make both `a` and `b` the same length initially by adding leading zeroes. Then, before returning our answer, we remove any leading zeroes. However, this approach wastes a lot of time when both strings are very long.
+This case could be eliminated if we simply make both `a` and `b` the same length initially by adding leading zeroes to `b`. Then, before returning our answer, we remove any leading zeroes. However, this approach wastes a lot of time when both strings are very long.
 
 To bypass this problem, we simply reduce the total number of steps and the number of single digit product at each step to eliminate cases where the 1-digit multiplication involves a leading zero.
+
+The logic is same as Case 1 with a couple of IF statements more.
+
+First, we find the expected number of 1-digit multiplication if `a` and `b` were the same length :
+```cpp
+        if (step <= asize) {lines = step;}
+        else {
+            lines= asize - (step- asize); // do not simplify as 2*asize might overflow
+        }
+```
+
+When all the digits of `b` have been traversed, `min` becomes negative. If `a` and `b` are the same length, we exit when `min` is negative. However, when they differ in length, we cannot exit. So, each time `min` reaches the start of `b`, we decrement `max` and keep `min` at 0.
+```cpp
+        if (min < 0) {
+            min = 0;
+            max--;
+        }
+```
+The following gif shows how min and max varies :
+
+Then we reduce the number of 1-digit multiplication by taking into consideration the number of leading zeroes would have been added to `b` to make it the same length as `a`.
+
+```cpp
+        if (min < 0) {
+            min = 0;
+            max--;
+            if (step < asize) {
+                lines -= step - bsize;
+            }
+            else {
+                lines -= asize - bsize;
+            }
+        }
+```
 
 # How testing was carried out #
 There are 1000 test cases.
