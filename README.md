@@ -46,7 +46,7 @@ Example :
 `j` is the index used to iterate over `b` within region bounded by min,max.
 
 
-# Case 1 : `a` and  `b` are of the same length `n` # 
+# Case 1 : Both `a` and  `b` have `n` digits # 
 This is the simplest case. The total number of steps required is `2n-1`. (There are `n` patterns +  `n` reflected patterns. However, the `n`th pattern is counted twice so we minus 1.)
 
 The number of 1-digit multiplication (or the number of lines drawn) at each step can be found as follows :
@@ -55,7 +55,7 @@ The number of 1-digit multiplication (or the number of lines drawn) at each step
         else {lines = n - (currentstep - n);} // or 2*n - currentstep
 ```
 
-| Step number | Number of 1-digit multiplication required |
+| Step number | Number of single digit product required |
 | :---        |    :----:   |
 | 1      | 1       |
 | 2   | 2        | 
@@ -70,6 +70,11 @@ The number of 1-digit multiplication (or the number of lines drawn) at each step
 | 2n-1   | 1        | 
 
 At each step, we will compute the sum of all the 1-digit multiplications required. From this sum we will obtain the carry for the next step and a digit of our answer. 
+
+The total number of single digit products is `n^2 + n - 1`  In comparison, the total number of single digit products for the Karatsuba algorithm is `n^(log(3))` where log is the log base 2.
+
+![image](https://user-images.githubusercontent.com/65414576/155828159-ae742681-dace-43b3-b0f9-542745d9b108.png)
+
 
 ## The pseudocode for Case 1 ##
 ```
@@ -97,7 +102,7 @@ Return answer
 # Case 2 : `b` has fewer digits than `a` # 
 This case could be eliminated if we simply make both `a` and `b` the same length initially by adding leading zeroes. Then, before returning our answer, we remove any leading zeroes. However, this approach wastes a lot of time when both strings are very long.
 
-To bypass this problem, we simply reduce the total number of steps to eliminate cases where the 1-digit multiplication involves a leading zero.
+To bypass this problem, we simply reduce the total number of steps and the number of single digit product at each step to eliminate cases where the 1-digit multiplication involves a leading zero.
 
 # How testing was carried out #
 There are 1000 test cases.
