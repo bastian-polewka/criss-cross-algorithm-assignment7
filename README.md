@@ -4,7 +4,7 @@
 3. [Code implementation + explanation](#CodeImp)
 
 # VedicMultiplicationAlgorithm  <a name="VedicMultiplicationAlgorithm"></a>
-Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge, multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit string numbers can be multiplied almost instantly.
+Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge, multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit string numbers (numbers greater than googolplex) can be multiplied almost instantly.
 
 The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
 
@@ -58,14 +58,14 @@ For more explanations on the algorithm refer to :
 ```min``` and ```max``` keep keep track of region within which the cross-multiplication will take place.
 
 Example :
+
 ![](3x3+min+max[2975].gif)
 
 ![image](https://user-images.githubusercontent.com/65414576/155732674-d9b96441-29d1-42d6-99b4-a4a211b23a46.png)
 
-`i` is the index used to iterate over `a` within region bounded by `min`, `max`.
+`i` is the index used to iterate over `a` within region `[min, max]`.
 
-`j` is the index used to iterate over `b` within region bounded by `min`, `max`.
-
+`j` is the index used to iterate over `b` within region `[min, max]`.
 
 ## Case 1 : Both `a` and  `b` have `n` digits ## 
 This is the simplest case. The total number of steps required is `2n-1`. (There are `n` patterns +  `n` reflected patterns. However, the `n`th pattern is counted twice so we minus 1.)
@@ -172,5 +172,8 @@ A counter `c` is incremented each time, the vedic algorithm performs better than
 In the end, the success rate (number of times out of 1000 `vedic()` took less time) is calculated.
 
 # Current limitation #
-
 `a` and `b` must have less than 2^32 digits because string data type can only store 2^32 characters.
+
+# Improvements #
+- Do not use long long data type. Instead save the sum and the carry as strings.
+
