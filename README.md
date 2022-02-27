@@ -194,7 +194,7 @@ The rest of the code is same as that in Case 1.
 
 - The number of test cases was atleast 100 to get statistically meaningful results. 
 
-- Each test case generates a set of 2 random numbers whose lengths go up to 10000 digits.
+- Each test case generates a set of 2 random numbers with a pre-set number of digits.
 
 - `vedic()` and `karatsuba()` take as parameter the same 2 random numbers.
 
