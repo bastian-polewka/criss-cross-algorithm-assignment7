@@ -204,12 +204,12 @@ In the end, the success rate (number of times out of 1000 `vedic()` took less ti
 No testing was done beyond 10,000 digits because the karatsuba algorithm was taking too much time.
 
 | Number of digits | Avg time for vedic() | Avg time of karatsuba() in microseconds | % difference |
-| :---        |    :----:   | :----: | |
-| 100      | 1       | | |
-| 500   | 2        | | |
-| 1000   | 3        | | |
-| 5000   | 4        | | |
-| 10000   |      43   | | |
+| :---        |    :----:                 | :----:                                  |   :----:     |
+| 100         | 6033                      | 343458                                  |        98.2  |
+| 500         | 2                         |                                         |              |
+| 1000        | 3                         |                                         |              |
+| 5000        | 4                         |                                         |              |
+| 10 000      | 4                         |                                         |              |
 
 # Current limitation <a name="limitation"></a>
 `a` and `b` must have less than 2^32 digits because string data type can only store 2^32 characters.
