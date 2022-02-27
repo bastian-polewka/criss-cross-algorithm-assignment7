@@ -191,25 +191,30 @@ The following gif shows how `min` and `max` changes with each step :
 The rest of the code is same as that in Case 1.
 
 # How testing was carried out  <a name="testing"></a>
-There are 1000 test cases.
 
-Each test case generates a set of 2 random numbers whose lengths go up to 10000 digits.
+- The number of test cases was atleast 100 to get statistically meaningful results. 
 
-A counter `c` is incremented each time, the vedic algorithm performs better than the karatsuba algorithm.
+- Each test case generates a set of 2 random numbers whose lengths go up to 10000 digits.
 
-I also calculated the difference in times.
+- `vedic()` and `karatsuba()` take as parameter the same 2 random numbers.
 
-In the end, the success rate (number of times out of 1000 `vedic()` took less time) is calculated.
+- The time taken by each function is calculated.
 
-No testing was done beyond 10,000 digits because the karatsuba algorithm was taking too much time.
+- A counter `c` is incremented each time, the vedic algorithm performs better than the karatsuba algorithm.
 
-| Number of digits | Avg time for vedic() | Avg time of karatsuba() in microseconds | % difference |
-| :---        |    :----:                 | :----:                                  |   :----:     |
-| 100         | 6033                      | 343458                                  |        98.2  |
-| 500         | 2                         |                                         |              |
-| 1000        | 3                         |                                         |              |
-| 5000        | 4                         |                                         |              |
-| 10 000      | 4                         |                                         |              |
+- I also calculated the difference in times.
+
+- In the end, the success rate (number of times out of 1000 `vedic()` took less time) is calculated.
+
+No testing was done beyond 10,000 digits for the karatsuba algorithm because it was taking too much time. (definitely more time than vedic)
+
+| Number of digits |Number of test cases | Avg time for vedic() | Avg time of karatsuba() in microseconds | % difference |
+| :---             |:----:                 |:----:                |:----:                                   |:----:        |
+| 100              | 1000                  | 6033               | 343458                                  |        98.2  |
+| 500              | 100                   |  2263                 |131762                                |     98.2           |
+| 1000             | 100                   |  141299               | > 141299                             | ?              |
+| 5000             | 100                   |  3405879              |  > 3405879                                     |     ?         |
+| 10 000           | 100                   |                      |  >                                       |       ?       |
 
 # Current limitation <a name="limitation"></a>
 `a` and `b` must have less than 2^32 digits because string data type can only store 2^32 characters.
