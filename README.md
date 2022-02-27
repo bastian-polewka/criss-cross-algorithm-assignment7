@@ -2,7 +2,7 @@
 1. [VedicMultiplicationAlgorithm](#intro)
 2. [Criss-Cross multiplication explanation](#Cross)
 3. [Code implementation + explanation](#CodeImp)
-4. [How testing was carried out](#testing)
+4. [How testing was carried out + Results](#testing)
 5. [Limitation](#limitation)
 6. [Improvement](#improvement)
 
@@ -20,7 +20,7 @@ Unlike the Karatsuba algorithm, the Criss-Cross algorithm can also be used to ma
 
 Worst case scenario is when the 2 digits have the same number of digits. 
 
-More explanation about the time complexity is found below.
+More explanation about the time complexity is found [below](#Case1).
 
 ## Function call ##
 ```cpp
@@ -40,25 +40,27 @@ Steps  :
 - The remaing digits of our sum is our new carry.
 - Repeat for all steps
 
-Example 1 :
+### Pattern for 2-digit multiplication ###
+![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/cd05c87109f43e90a4fba7576bde68e94389349c/Media%20Files/2x2+pattern.gif)
+
+Example :
 
 ![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/a2b8ccf5951fdeb7a31f31aa4754585d8ac21d32/Media%20Files/Example+1.gif)
 
-Example 2 :
-
-
 ### Pattern for 3-digit multiplication ###
 ![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/a2b8ccf5951fdeb7a31f31aa4754585d8ac21d32/Media%20Files/3x3+pattern.gif)
+
 ### Pattern for 4-digit multiplication ###
 ![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/a2b8ccf5951fdeb7a31f31aa4754585d8ac21d32/Media%20Files/4x4+pattern.gif)
 
+The pattern continues indefinitely for any number of digits.
 
 I don't have a formal proof of why this algorithm works but if we compare the grade-school algorithm and this algorithm side-by-side, it becomes obvious.  
 ![image](https://user-images.githubusercontent.com/65414576/155765960-2ec47174-1825-4c9d-8fa9-94a6a6086361.png)
 
 The advantage of the criss-cross algorithm over the grade-school algorithm is that it works with smaller numbers (it adds single-digit products and resets the sum each time).
 
-For more explanations on the algorithm refer to :
+For more explanations/examples on the algorithm refer to :
 1. Page 27 in this book
 2. https://www.youtube.com/watch?v=iNQ9Mj_zS-I&ab_channel=SumanTVEducation
 
@@ -84,7 +86,7 @@ Example :
 
 `j` is the index used to iterate over `b` within region `[min, max]`.
 
-## Case 1 : Both `a` and  `b` have `n` digits ## 
+## Case 1 : Both `a` and  `b` have `n` digits ## <a name="Case1"></a>
 This is the simplest case. The total number of steps required is `2n-1`. (There are `n` patterns +  `n` reflected patterns. However, the `n`th pattern is counted twice so we minus 1.)
 
 The number of 1-digit multiplication (or the number of lines drawn) at each step can be found as follows :
@@ -113,6 +115,9 @@ The total number of single digit products is `n^2 + n - 1`  In comparison, the t
 
 ![image](https://user-images.githubusercontent.com/65414576/155828159-ae742681-dace-43b3-b0f9-542745d9b108.png)
 
+Even though, the time complexity of my algorithm seems to be worse, it actually performs better than the karatsuba algorithm when the number of digits is below 10,000. (assuming I correctly tested the algorithms)
+
+However, when the number of digits is exponentially higher (1e100 for example), my guess is that the karatsuba algorithm will perform better (though no testing was done for such numbers).
 
 ### The pseudocode for Case 1 ###
 ```
@@ -182,7 +187,7 @@ The rest of the code is same as that in Case 1.
 # How testing was carried out  <a name="testing"></a>
 There are 1000 test cases.
 
-Each test case generates a set of 2 random numbers whose lengths vary between 100 and 1000 digits.
+Each test case generates a set of 2 random numbers whose lengths vary between 100 and 10000 digits.
 
 A counter `c` is incremented each time, the vedic algorithm performs better than the karatsuba algorithm.
 
