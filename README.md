@@ -193,11 +193,15 @@ The rest of the code is same as that in Case 1.
 # How testing was carried out  <a name="testing"></a>
 There are 1000 test cases.
 
-Each test case generates a set of 2 random numbers whose lengths vary between 100 and 10000 digits.
+Each test case generates a set of 2 random numbers whose lengths go up to 10000 digits.
 
 A counter `c` is incremented each time, the vedic algorithm performs better than the karatsuba algorithm.
 
+I also calculated the difference in times.
+
 In the end, the success rate (number of times out of 1000 `vedic()` took less time) is calculated.
+
+No testing was done beyond 10,000 digits because the karatsuba algorithm was taking too much time.
 
 # Current limitation <a name="limitation"></a>
 `a` and `b` must have less than 2^32 digits because string data type can only store 2^32 characters.
