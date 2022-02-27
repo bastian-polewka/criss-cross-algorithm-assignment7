@@ -1,5 +1,5 @@
 # Table of contents
-1. [VedicMultiplicationAlgorithm](#intro)
+1. [Introduction](#intro)
 2. [Criss-Cross multiplication explanation](#Cross)
 3. [Code implementation + explanation](#CodeImp)
 4. [How testing was carried out + Results](#testing)
@@ -13,7 +13,7 @@ Also known as the Criss-Cross multiplication algorithm, this 50-lines long algor
 
 The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
 
-Unlike the Karatsuba algorithm, the Criss-Cross algorithm can also be used to manually multiply any number in a SINGLE line using pen and paper or even mentally. And obviously, this algorithm is faster than the grade-school algorithm for multiplying numbers.
+The Criss-Cross algorithm comes from Vedic mathematics, a compendium of tricks for increasing the speed of mathematical calculations. Unlike the Karatsuba algorithm, the Criss-Cross algorithm can also be used to manually multiply any number in a SINGLE line using pen and paper or even mentally. And obviously, this algorithm is faster than the grade-school algorithm for multiplying numbers.
 
 ## Time complexity ##
 ![image](https://user-images.githubusercontent.com/65414576/155485833-6879c3a5-96af-46da-8bd8-24ec270fc61a.png)
