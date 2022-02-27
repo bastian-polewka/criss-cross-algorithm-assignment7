@@ -117,7 +117,7 @@ The total number of single digit products is `n^2 + n - 1`  In comparison, the t
 
 Even though, the time complexity of my algorithm seems to be worse, it actually performs better than the karatsuba algorithm when the number of digits is below 10,000. (assuming I correctly tested the algorithms)
 
-However, when the number of digits is exponentially higher (1e100 for example), my guess is that the karatsuba algorithm will perform better (though no testing was done for such numbers).
+However, when the number of digits is exponentially higher (1e100 digits for example), my guess is that the karatsuba algorithm will perform better (though no testing was done for such numbers).
 
 ### The pseudocode for Case 1 ###
 ```
