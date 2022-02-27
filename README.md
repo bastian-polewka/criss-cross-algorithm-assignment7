@@ -171,9 +171,6 @@ When all the digits of `b` have been traversed, `min` becomes negative. If `a` a
             max--;
         }
 ```
-The following gif shows how `min` and `max` changes with each step :
-![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/693d7c3bdc8f90d6fb8dfaf60001f69f688ff516/Media%20Files/5x3+min+max.gif)
-
 Then we reduce the number of 1-digit multiplication as follows :
 
 ```cpp
@@ -188,6 +185,9 @@ Then we reduce the number of 1-digit multiplication as follows :
             }
         }
 ```
+The following gif shows how `min` and `max` changes with each step :
+![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/693d7c3bdc8f90d6fb8dfaf60001f69f688ff516/Media%20Files/5x3+min+max.gif)
+
 The rest of the code is same as that in Case 1.
 
 # How testing was carried out  <a name="testing"></a>
@@ -202,6 +202,14 @@ I also calculated the difference in times.
 In the end, the success rate (number of times out of 1000 `vedic()` took less time) is calculated.
 
 No testing was done beyond 10,000 digits because the karatsuba algorithm was taking too much time.
+
+| Number of digits | Avg time for vedic() | Avg time of karatsuba() in microseconds | % difference |
+| :---        |    :----:   | :----: | |
+| 100      | 1       | | |
+| 500   | 2        | | |
+| 1000   | 3        | | |
+| 5000   | 4        | | |
+| 10000   |      43   | | |
 
 # Current limitation <a name="limitation"></a>
 `a` and `b` must have less than 2^32 digits because string data type can only store 2^32 characters.
