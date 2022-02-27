@@ -147,9 +147,14 @@ This case could be eliminated if we simply make both `a` and `b` the same length
 
 To bypass this problem, we simply reduce the total number of steps and the number of single digit product at each step to eliminate cases where the 1-digit multiplication involves a leading zero.
 
-The logic is same as Case 1 with a couple of IF statements more.
+The total number of steps is now found using :
+```cpp
+    const ll asize = static_cast<ll>(a.size());
+    const ll bsize = static_cast<ll>(b.size());
+    ll totalsteps = asize + bsize - 1;
+```
 
-First, we find the expected number of 1-digit multiplication if `a` and `b` were the same length :
+For each step, we find the expected number of 1-digit multiplication if `a` and `b` were the same length :
 ```cpp
         if (step <= asize) {
              lines = step;
@@ -159,7 +164,7 @@ First, we find the expected number of 1-digit multiplication if `a` and `b` were
         }
 ```
 
-When all the digits of `b` have been traversed, `min` becomes negative. If `a` and `b` are the same length, we exit when `min` is negative. However, when they differ in length, we cannot exit. So, each time `min` reaches the start of `b`, we decrement `max` and keep `min` at 0.
+When all the digits of `b` have been traversed, `min` becomes negative. If `a` and `b` are the same length, we exit when `min` is negative. However, when they differ in length, we cannot exit. So, each time `min` reaches the start of `b`, we decrement `max` and keep `min` at index 0 of `b`.
 ```cpp
         if (min < 0) {
             min = 0;
@@ -167,6 +172,7 @@ When all the digits of `b` have been traversed, `min` becomes negative. If `a` a
         }
 ```
 The following gif shows how `min` and `max` changes with each step :
+![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/693d7c3bdc8f90d6fb8dfaf60001f69f688ff516/Media%20Files/5x3+min+max.gif)
 
 Then we reduce the number of 1-digit multiplication as follows :
 
