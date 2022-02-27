@@ -42,17 +42,16 @@ Steps  :
 
 Example 1 :
 
+![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/a2b8ccf5951fdeb7a31f31aa4754585d8ac21d32/Media%20Files/Example+1.gif)
+
 Example 2 :
 
 
-
-### Pattern for 2-digit multiplication ### 
-
 ### Pattern for 3-digit multiplication ###
-
+![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/a2b8ccf5951fdeb7a31f31aa4754585d8ac21d32/Media%20Files/3x3+pattern.gif)
 ### Pattern for 4-digit multiplication ###
+![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/a2b8ccf5951fdeb7a31f31aa4754585d8ac21d32/Media%20Files/4x4+pattern.gif)
 
-### Full explanation on how to carry out multiplication ###
 
 I don't have a formal proof of why this algorithm works but if we compare the grade-school algorithm and this algorithm side-by-side, it becomes obvious.  
 ![image](https://user-images.githubusercontent.com/65414576/155765960-2ec47174-1825-4c9d-8fa9-94a6a6086361.png)
@@ -77,7 +76,7 @@ For more explanations on the algorithm refer to :
 
 Example :
 
-![](3x3+min+max[2975].gif)
+![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/a2b8ccf5951fdeb7a31f31aa4754585d8ac21d32/Media%20Files/3x3+min+max%5B2975%5D.gif)
 
 ![image](https://user-images.githubusercontent.com/65414576/155732674-d9b96441-29d1-42d6-99b4-a4a211b23a46.png)
 
