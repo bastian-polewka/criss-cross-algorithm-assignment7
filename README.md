@@ -30,8 +30,21 @@ where a,b are **positive integers in string format**.
 
 # Criss-Cross multiplication explanation <a name="Cross"></a>
 Here are a few things to note :
-- The multiplicationa algorithm follows a pattern.
+- There's a specific pattern to follow. (More about this below)  .
 - If `a` has `n` digits and `b` has `m` digits, where `n>=m`, then to compute `a*b`, there is at most `2*n - 1` single digit product to be carried out.
+
+Steps  :
+- At each step compute the sum of all the required single digit product.
+- Add carry (if any) to this sum.
+- The last digit of this result is concatenated to the left of our final answer.
+- The remaing digits of our sum is our new carry.
+- Repeat for all steps
+
+Example 1 :
+
+Example 2 :
+
+
 
 ### Pattern for 2-digit multiplication ### 
 
