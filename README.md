@@ -1,6 +1,6 @@
 # Table of contents
 1. [Introduction](#intro)
-2. [Criss-Cross multiplication explanation](#Cross)
+2. [Criss-Cross multiplication algorithm](#Cross)
 3. [Code implementation + explanation](#CodeImp)
 4. [How testing was carried out + Results](#testing)
 5. [Limitation](#limitation)
@@ -30,7 +30,7 @@ vedic(a, b)
 ``` 
 where a,b are **positive integers in string format**.
 
-# Criss-Cross multiplication explanation <a name="Cross"></a>
+# Criss-Cross multiplication algorithm <a name="Cross"></a>
 Here are a few things to note :
 - There's a specific pattern to follow. (More about this below)  .
 - If `a` has `n` digits and `b` has `m` digits, where `n>=m`, then to compute `a*b`, there is at most `2*n - 1` single digit product to be carried out.
