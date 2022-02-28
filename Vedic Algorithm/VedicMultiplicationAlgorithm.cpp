@@ -15,21 +15,15 @@ string vedic1(string a, string b) {
         sum = 0; //reset sum
 
         if (step <= asize) {lines = step;}
-        else {
-            lines= asize - (step- asize); // do not simplify as 2*asize might overflow
-        }
+        else {lines= asize - (step- asize);}
 
         //at this point, lines = number of multiplications required for current step, assuming no leading zeroes in b
         //reduce this number further if there are leading zeroes in b
         if (min < 0) {
             min = 0;
             max--;
-            if (step < asize) {
-                lines -= step - bsize;
-            }
-            else {
-                lines -= asize - bsize;
-            }
+            if (step < asize) {lines -= step - bsize;}
+            else {lines -= asize - bsize;}
         }
         
         //cross-multiply
