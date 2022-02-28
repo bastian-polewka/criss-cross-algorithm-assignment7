@@ -194,15 +194,17 @@ The rest of the code is same as that in Case 1.
 
 - The number of test cases was atleast 100 to get statistically meaningful results. 
 
-- Each test case generates a set of 2 random numbers with a pre-set number of digits.
+* For each test case
+        
+    *  A set of 2 random numbers with a pre-set number of digits is generated.
 
-- `vedic()` and `karatsuba()` take as parameter the same 2 random numbers.
+    * `vedic()` and `karatsuba()` take as parameter the **same** 2 random numbers.
 
-- The time taken by each function is calculated.
+    * The time taken by each function is calculated.
 
-- A counter `c` is incremented each time, the vedic algorithm performs better than the karatsuba algorithm.
+    * A counter `c` is incremented each time, the vedic algorithm takes less time.
 
-- I also calculated the difference in times.
+    * The difference in times is also calculated.
 
 - In the end, the success rate (number of times out of 1000 `vedic()` took less time) is calculated.
 
@@ -210,7 +212,7 @@ No testing was done beyond 10,000 digits for the karatsuba algorithm because it 
 
 | Number of digits |Number of test cases | Avg time for vedic() | Avg time of karatsuba() in microseconds | % difference |
 | :---             |:----:                 |:----:                |:----:                                   |:----:        |
-| 100              | 1000                  | 6033               | 343458                                  |        98.2  |
+| 100              | 1000                  | 6033                  | 343458                                  |        98.2  |
 | 500              | 100                   |  2263                 |131762                                |     98.2           |
 | 1000             | 100                   |  141299               | > 141299                             | ?              |
 | 5000             | 100                   |  3405879              |  > 3405879                                     |     ?         |
