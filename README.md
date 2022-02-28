@@ -9,7 +9,7 @@
 
 
 # Introduction  <a name="intro"></a>
-Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math knowledge, multiplies large string numbers in at least 90% LESS time than the Karatsuba algorithm. 1000-digit string numbers (numbers greater than 10^100) can be multiplied in less than 30 seconds.
+Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, without any advanced math techniques, multiplies large positive integers in string format and returns the exact answer in string format. Multiplication of 1000-digit string numbers (numbers greater than 10^100) can be done almost instantly. This algorithm carries multiplication in at least 90% LESS time than the Karatsuba algorithm when the number of digits is below 10,000 (no testing was done beyond 10,000)
 
 The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
 
@@ -86,7 +86,7 @@ Example :
 
 `j` is the index used to iterate over `b` within region `[min, max]`.
 
-## Case 1 : Both `a` and  `b` have `n` digits ## <a name="Case1"></a>
+## Case 1 : Both `a` and  `b` have `n` digits <a name="Case1"></a>
 This is the simplest case. The total number of steps required is `2n-1`. (There are `n` patterns +  `n` reflected patterns. However, the `n`th pattern is counted twice so we minus 1.)
 
 The number of 1-digit multiplication (or the number of lines drawn) at each step can be found as follows :
@@ -210,12 +210,14 @@ The rest of the code is same as that in Case 1.
 
 No testing was done beyond 10,000 digits for the karatsuba algorithm because it was taking too much time. (definitely more time than vedic)
 
+Here's the resuls of my testing. The average time per test case in also included.
+
 | Number of digits |Number of test cases | Avg time for vedic() | Avg time of karatsuba() in microseconds | % difference |
 | :---             |:----:                 |:----:                |:----:                                   |:----:        |
 | 100              | 1000                  | 6033                  | 343458                                  |        98.2  |
-| 500              | 100                   |  2263                 |131762                                |     98.2           |
-| 1000             | 100                   |  141299               | > 141299                             | ?              |
-| 5000             | 100                   |  3405879              |  > 3405879                                     |     ?         |
+| 500              | 100                   |  2263                 | 131762                                |     98.2           |
+| 1000             | 200                   |  172990               | 5794911                                  | 97.0            |
+| 5000             | 50                   |  .                   |  > 3405879                                     |     ?         |
 | 10 000           | 100                   |                      |  >                                       |       ?       |
 
 # Current limitation <a name="limitation"></a>
