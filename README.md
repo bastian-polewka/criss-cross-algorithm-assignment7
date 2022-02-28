@@ -222,5 +222,5 @@ No testing was done beyond 10,000 digits for the karatsuba algorithm because it 
 `a` and `b` must have less than 2^32 digits because string data type can only store 2^32 characters.
 
 # Improvements <a name="improvement"></a>
-- Do not use long long data type. Instead save the sum and the carry as strings.
+- Store `sum` and `carry` as strings instead of long long. 
 
