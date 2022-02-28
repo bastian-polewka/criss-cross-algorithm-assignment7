@@ -143,7 +143,7 @@ Return answer
 ```
 
 ## Case 2 : `b` has fewer digits than `a` ## 
-This case could be eliminated if we simply make both `a` and `b` the same length initially by adding leading zeroes to `b`. Then, before returning our answer, we remove any leading zeroes. However, this approach wastes a lot of time when both strings are very long.
+This case could be eliminated if we simply make both `a` and `b` the same length initially by adding leading zeroes to `b`. However, this approach is time-consuming because there will be unnecessary and will introduce leading zeroes in our final answer which must be removed.
 
 To bypass this problem, we simply reduce the total number of steps and the number of single digit product at each step to eliminate cases where the 1-digit multiplication involves a leading zero.
 
@@ -154,7 +154,7 @@ The total number of steps is now found using :
     ll totalsteps = asize + bsize - 1;
 ```
 
-For each step, we find the expected number of 1-digit multiplication if `a` and `b` were the same length :
+For each step, we first find the expected number of 1-digit multiplication if `a` and `b` were the same length :
 ```cpp
         if (step <= asize) {
              lines = step;
