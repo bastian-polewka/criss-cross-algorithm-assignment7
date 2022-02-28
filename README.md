@@ -9,7 +9,7 @@
 
 
 # Introduction  <a name="intro"></a>
-Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, without any advanced math techniques, multiplies large positive integers in string format and returns the exact answer in string format. Multiplication of 1000-digit string numbers (numbers greater than 10^100) can be done almost instantly. This algorithm carries multiplication in at least 90% LESS time than the Karatsuba algorithm when the number of digits is below 10,000 (no testing was done beyond 10,000)
+Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, without any advanced math techniques, multiplies large positive integers in string format and returns the exact answer in string format. Multiplication of 1000-digit string numbers (numbers greater than 10^100) can be done almost instantly. This algorithm is nearly twice as fast as the Karatsuba algorithm when the number of digits in numbers being multiplies is below 10,000 (no testing was done beyond 10,000).
 
 The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
 
