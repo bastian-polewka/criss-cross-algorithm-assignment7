@@ -1,75 +1,77 @@
-/*DISCLAIMER
-This code is not mine and was copied from https://www.codewars.com/kata/reviews/59d4a77792836c2ee100048b/groups/5f46c09915fbdc0001312497 
-MUST CHANGE. 
-*/
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-string add(string x, string y);
-string subtract(string x, string y);
-
-// karatsuba's recursive algorithm
-string multiply(string x, string y) {
-  int length {max((int)x.size(), (int)y.size())};
-  while ((int)x.size() < length)
-    x.insert(0, "0");
-  while ((int)y.size() < length)
-    y.insert(0, "0");
-  if (length == 1)
-    return to_string((x[0]-'0')*(y[0]-'0'));
-  string a {x.substr(0, length/2)}, b {x.substr(length/2, length-length/2)}, c {y.substr(0, length/2)}, d {y.substr(length/2, length-length/2)};
-  string ac {multiply(a, c)}, bd {multiply(b, d)}, apbcpd {multiply(add(a, b), add(c, d))};
-  string apbcpdm {subtract(apbcpd, add(ac, bd))};
-  for (int i {}; i < 2*(length-length/2); i++)
-    ac.append("0");
-  for (int i {}; i < length-length/2; i++)
-    apbcpdm.append("0");
-  string ans {add(add(ac, bd), apbcpdm)};
-  return ans.erase(0, min(ans.find_first_not_of("0"), ans.size()-1));
-}
-
-string add(string x, string y) {
-  int length {max((int)x.size(), (int)y.size())}, carry {}, sum_col {};
-  string ans;
-  while ((int)x.size() < length)
-    x.insert(0, "0");
-  while ((int)y.size() < length)
-    y.insert(0, "0");
-  for (int i {length-1}; i >= 0; i--) {
-    sum_col = (x[i]-'0') + (y[i]-'0') + carry;
-    carry = sum_col/10;
-    ans.insert(0, to_string(sum_col % 10));
-  }
-  if (carry)
-    ans.insert(0, to_string(carry));
-  ans.erase(0, min((int)ans.find_first_not_of('0'), (int)ans.size()-1));
-  return (ans.size() > 0)? ans : "0";
-}
-
-string subtract(string x, string y) {
-  int length {max((int)x.size(), (int)y.size())}, diff {};
-  string ans {};
-  while ((int)x.size() < length)
-    x.insert(0, "0");
-  while ((int)y.size() < length)
-    y.insert(0, "0");
-  for (int i {length-1}; i >= 0; i--) {
-    diff = x[i] - y[i];
-    if (diff >= 0)
-      ans.insert(0, to_string(diff));
-    else {
-      int j {i-1};
-      while (j >= 0) {
-        x[j] = ((x[j]-'0')-1)%10+'0';
-        if (x[j] != '9')
-          break;
-        else
-          j--;
-      }
-      ans.insert(0, to_string(diff+10));
+string add(string a, string b)
+{
+    a = string(max(a.size(), b.size()) + 1 - a.size(), '0') + a;
+    b = string(a.size() - b.size(), '0') + b;
+    for (int i = a.size() - 1, carry = 0; i >= 0; i--)
+    {
+        int sum = a[i] + b[i] - 96 + carry;
+        carry = sum / 10;
+        a[i] = sum % 10 + '0';
     }
-  }
-  return ans.erase(0, min((int)ans.find_first_not_of("0"), (int)ans.size()-1));
+    int i = a.find_first_not_of('0');
+    return 0 <= i ? a.substr(i) : a.substr(0, 1);
+}
+
+string subtract(string a, string b) {
+    string str = "";
+    int n1 = a.length(), n2 = b.length();
+    int diff = n1 - n2;
+    int carry = 0;
+
+    for (int i = n2 - 1; i >= 0; i--) {
+        int sub = ((a[i + diff] - '0') - (b[i] - '0') - carry);
+        if (sub < 0) { sub = sub + 10; carry = 1; }
+        else carry = 0;
+        str.push_back(sub + '0');
+    }
+
+    // subtract remaining digits of str1[]
+    for (int i = n1 - n2 - 1; i >= 0; i--) {
+        if (a[i] == '0' && carry) {
+            str.push_back('9');
+            continue;
+        }
+        int sub = ((a[i] - '0') - carry);
+        if (i > 0 || sub > 0) // remove preceding 0's
+            str.push_back(sub + '0');
+        carry = 0;
+    }
+
+    reverse(str.begin(), str.end());
+
+    //remove leading zeroes
+    int i = str.find_first_not_of('0');
+    return 0 <= i ? str.substr(i) : str.substr(0, 1);
+}
+
+string karatsuba(string n1, string n2) {
+    if (n1.length() < 2 && n2.length() < 2) { return to_string(stoi(n1) * stoi(n2)); }
+
+    ll n = max(n1.length(), n2.length());
+    ll half = n / 2;
+
+    string a, b, c, d;
+    if (n1.length() - half <= 0) { a = "0"; b = n1; }
+    else {
+        a = n1.substr(0, n1.length() - half);
+        b = n1.substr(n1.length() - half, half);
+    }
+
+    if (n2.length() - half <= 0) { c = "0"; d = n2; }
+    else {
+        c = n2.substr(0, n2.length() - half);
+        d = n2.substr(n2.length() - half, half);
+    }
+
+    string ac = karatsuba(a, c);
+    string bd = karatsuba(b, d);
+    string ad_plus_bc = karatsuba(add(a, b), add(c, d));
+    ad_plus_bc = subtract(ad_plus_bc, ac);
+    ad_plus_bc = subtract(ad_plus_bc, bd);
+
+    ac += string(2 * half, '0');
+    ad_plus_bc += string(half, '0');
+
+    return add(add(ac, ad_plus_bc), bd);
+
 }
