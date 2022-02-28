@@ -9,11 +9,13 @@
 
 
 # Introduction  <a name="intro"></a>
-Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, without any advanced math techniques, multiplies large positive integers in string format and returns the exact answer in string format. Multiplication of 1000-digit string numbers (numbers greater than 10^100) can be done almost instantly. This algorithm is nearly twice as fast as the Karatsuba algorithm when the number of digits in numbers being multiplies is below 10,000 (no testing was done beyond 10,000).
+Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, without any advanced math techniques, multiplies large positive integers in string format and returns the exact answer in string format. Multiplication of 1000-digit string numbers (numbers greater than 10^100) can be done almost instantly. This algorithm is nearly twice as fast as the Karatsuba algorithm when the number of digits is below 1000.
 
 The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
 
 The Criss-Cross algorithm comes from Vedic mathematics, a compendium of tricks for increasing the speed of mathematical calculations. Unlike the Karatsuba algorithm, the Criss-Cross algorithm can also be used to manually multiply any number in a SINGLE line using pen and paper or even mentally. And obviously, this algorithm is faster than the grade-school algorithm for multiplying numbers.
+
+More details about Vedic math can be found [here](https://github.com/KVBharatBhushan/Vedic-Maths)
 
 ## Time complexity ##
 ![image](https://user-images.githubusercontent.com/65414576/155485833-6879c3a5-96af-46da-8bd8-24ec270fc61a.png)
@@ -60,9 +62,7 @@ I don't have a formal proof of why this algorithm works but if we compare the gr
 
 The advantage of the criss-cross algorithm over the grade-school algorithm is that it works with smaller numbers (it adds single-digit products and resets the sum each time).
 
-For more explanations/examples on the algorithm refer to :
-1. Page 27 in this book
-2. https://www.youtube.com/watch?v=iNQ9Mj_zS-I&ab_channel=SumanTVEducation
+For more explanations/examples [click here](https://www.youtube.com/watch?v=iNQ9Mj_zS-I&ab_channel=SumanTVEducation)
 
 # Code implementation + explanation  <a name="CodeImp"></a>
 
@@ -115,9 +115,7 @@ The total number of single digit products is `n^2 + n - 1`  In comparison, the t
 
 ![image](https://user-images.githubusercontent.com/65414576/155828159-ae742681-dace-43b3-b0f9-542745d9b108.png)
 
-Even though, the time complexity of my algorithm seems to be worse, it actually performs better than the karatsuba algorithm when the number of digits is below 10,000. (assuming I correctly tested the algorithms)
-
-However, when the number of digits is exponentially higher (1e100 digits for example), my guess is that the karatsuba algorithm will perform better (though no testing was done for such numbers).
+As the number of digits in the integers being multiplied tends to infinity, the karatsuba algorithm will perform better. However, for relatively large numbers (having less than 10,000 digits), the karatsuba algorithm performs worse. 
 
 ### The pseudocode for Case 1 ###
 ```
@@ -185,7 +183,6 @@ Then we reduce the number of 1-digit multiplication as follows :
             }
         }
 ```
-The following gif shows how `min` and `max` changes with each step :
 ![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/693d7c3bdc8f90d6fb8dfaf60001f69f688ff516/Media%20Files/5x3+min+max.gif)
 
 The rest of the code is same as that in Case 1.
@@ -206,19 +203,13 @@ The rest of the code is same as that in Case 1.
 
     * The difference in times is also calculated.
 
-- In the end, the success rate (number of times out of 1000 `vedic()` took less time) is calculated.
-
-No testing was done beyond 10,000 digits for the karatsuba algorithm because it was taking too much time. (definitely more time than vedic)
-
-Here are the resuls of my testing. The average time per test case (in microseconds) is also included.
+Here are the resuls of testing. The average time per test case (in microseconds) is also included.
 
 | Number of digits |Number of test cases | Avg time for vedic() | Avg time of karatsuba() | % difference |
 | :---             |:----:                 |:----:                |:----:                                   |:----:        |
 | 100              | 1000                  | 6033                  | 343458                                  |        98.2  |
 | 500              | 100                   |  2263                 | 131762                                |     98.2           |
 | 1000             | 200                   |  172990               | 5794911                                  | 97.0            |
-| 5000             | 50                   |  .                   |  > 3405879                                     |     ?         |
-| 10 000           | 100                   |                      |  >                                       |       ?       |
 
 # Current limitation <a name="limitation"></a>
 `a` and `b` must have less than 2^32 digits because string data type can only store 2^32 characters.
