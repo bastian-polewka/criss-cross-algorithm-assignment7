@@ -210,9 +210,9 @@ The rest of the code is same as that in Case 1.
 
 No testing was done beyond 10,000 digits for the karatsuba algorithm because it was taking too much time. (definitely more time than vedic)
 
-Here's the resuls of my testing. The average time per test case in also included.
+Here are the resuls of my testing. The average time per test case (in microseconds) is also included.
 
-| Number of digits |Number of test cases | Avg time for vedic() | Avg time of karatsuba() in microseconds | % difference |
+| Number of digits |Number of test cases | Avg time for vedic() | Avg time of karatsuba() | % difference |
 | :---             |:----:                 |:----:                |:----:                                   |:----:        |
 | 100              | 1000                  | 6033                  | 343458                                  |        98.2  |
 | 500              | 100                   |  2263                 | 131762                                |     98.2           |
