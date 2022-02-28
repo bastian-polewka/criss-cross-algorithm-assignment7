@@ -2,12 +2,10 @@
 #include <string>
 #include <regex>
 #include <chrono>
-
 #define ll long long
-
-
 using namespace std;
 using namespace std::chrono;
+
 string add(string a, string b)
 {
     a = string(max(a.size(), b.size()) + 1 - a.size(), '0') + a;
