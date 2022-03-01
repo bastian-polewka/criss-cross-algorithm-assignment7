@@ -9,7 +9,7 @@
 
 
 # Introduction  <a name="intro"></a>
-Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, without any advanced math techniques, multiplies large positive integers in string format and returns the exact answer in string format. Multiplication of 1000-digit string numbers (numbers greater than 10^100) can be done almost instantly. This algorithm is nearly twice as fast as the Karatsuba algorithm when the number of digits is below 1000.
+Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math techniques, multiplies large positive integers in string format and returns the exact answer in string format. Multiplication of 1000-digit string numbers (numbers greater than 10^100) can be done almost instantly. This algorithm is nearly twice as fast as the Karatsuba algorithm when the number of digits is below 1000.
 
 The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
 
@@ -31,16 +31,14 @@ vedic(a, b)
 where a,b are **positive integers in string format**.
 
 # Criss-Cross multiplication algorithm <a name="Cross"></a>
-Here are a few things to note :
-- There's a specific pattern to follow. (More about this below)  .
-- If `a` has `n` digits and `b` has `m` digits, where `n>=m`, then to compute `a*b`, there is at most `2*n - 1` single digit product to be carried out.
 
 Steps  :
+- There's a specific pattern to follow when carrying out single digit products. (More about this below).
 - At each step compute the sum of all the required single digit product.
 - Add carry (if any) to this sum.
 - The last digit of this result is concatenated to the left of our final answer.
-- The remaing digits of our sum is our new carry.
-- Repeat for all steps
+- The remaining digits of our sum is our new carry.
+- Repeat above for all steps
 
 ### Pattern for 2-digit multiplication ###
 ![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/cd05c87109f43e90a4fba7576bde68e94389349c/Media%20Files/2x2+pattern.gif)
@@ -57,7 +55,7 @@ Example :
 
 The pattern continues indefinitely for any number of digits.
 
-I don't have a formal proof of why this algorithm works but if we compare the grade-school algorithm and this algorithm side-by-side, it becomes obvious.  
+I don't have a formal proof of why this algorithm works but if we compare the grade-school algorithm and this algorithm side-by-side, there are some similarities.  
 ![image](https://user-images.githubusercontent.com/65414576/155765960-2ec47174-1825-4c9d-8fa9-94a6a6086361.png)
 
 The advantage of the criss-cross algorithm over the grade-school algorithm is that it works with smaller numbers (it adds single-digit products and resets the sum each time).
@@ -111,7 +109,7 @@ The number of 1-digit multiplication (or the number of lines drawn) at each step
 
 At each step, we will compute the sum of all the 1-digit multiplications required. From this sum we will obtain the carry for the next step and a digit of our answer. 
 
-The total number of single digit products is `n^2 + n - 1`  In comparison, the total number of single digit products for the Karatsuba algorithm is `n^(log(3))` where log is the log base 2.
+The total number of single digit product is `n^2 + n - 1`  In comparison, the total number of single digit products for the Karatsuba algorithm is `n^(log(3))` where log is the log base 2.
 
 ![image](https://user-images.githubusercontent.com/65414576/155828159-ae742681-dace-43b3-b0f9-542745d9b108.png)
 
@@ -162,7 +160,7 @@ For each step, we first find the expected number of 1-digit multiplication if `a
         }
 ```
 
-When all the digits of `b` have been traversed, `min` becomes negative. If `a` and `b` are the same length, we exit when `min` is negative. However, when they differ in length, we cannot exit. So, each time `min` reaches the start of `b`, we decrement `max` and keep `min` at index 0 of `b`.
+When all the digits of `b` have been traversed, `min` becomes negative. Previously when `a` and `b` were the same length, we exited when `min` is negative. However, when they differ in length, we cannot exit. Now, each time `min` reaches the start of `b`, we decrement `max` and keep `min` at index 0 of `b`.
 ```cpp
         if (min < 0) {
             min = 0;
