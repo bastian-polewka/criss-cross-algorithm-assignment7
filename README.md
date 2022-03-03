@@ -33,12 +33,12 @@ where a,b are **positive integers in string format**.
 # Criss-Cross multiplication algorithm <a name="Cross"></a>
 
 Steps  :
-- There's a specific pattern to follow when carrying out single digit products. (More about this below).
-- At each step compute the sum of all the required single digit product.
+- There's a specific set of patterns to follow when carrying out single digit products. (More about this below).
+- For each pattern, compute the sum of all the required single digit product.
 - Add carry (if any) to this sum.
 - The last digit of this result is concatenated to the left of our final answer.
 - The remaining digits of our sum is our new carry.
-- Repeat above for all steps
+- Repeat until all patterns have been exhausted.
 
 ### Pattern for 2-digit multiplication ###
 ![](https://github.com/creme332/VedicMultiplicationAlgorithm/blob/cd05c87109f43e90a4fba7576bde68e94389349c/Media%20Files/2x2+pattern.gif)
