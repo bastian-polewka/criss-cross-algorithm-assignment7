@@ -28,7 +28,7 @@ More explanation about the time complexity is found [below](#Case1).
 ```cpp
 vedic(a, b)
 ``` 
-where a,b are **positive integers in string format**.
+where a, b are **positive integers in string format**.
 
 # Criss-Cross multiplication algorithm <a name="Cross"></a>
 
