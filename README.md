@@ -8,7 +8,7 @@
 
 
 
-# Introduction  <a name="intro"></a>
+# 🔰 Introduction  <a name="intro"></a>
 Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math techniques, multiplies large positive integers in string format and returns the exact answer in string format. Multiplication of 1000-digit string numbers (numbers greater than 10^100) can be done almost instantly. This algorithm is nearly twice as fast as the Karatsuba algorithm when the number of digits is below 1000.
 
 The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
@@ -30,7 +30,7 @@ vedic(a, b)
 ``` 
 where a, b are **positive integers in string format**.
 
-# Criss-Cross multiplication algorithm <a name="Cross"></a>
+# 📰 Criss-Cross multiplication algorithm <a name="Cross"></a>
 
 Steps  :
 - There's a specific set of patterns to follow when carrying out single digit products. (More about this below).
@@ -185,7 +185,7 @@ Then we reduce the number of 1-digit multiplication as follows :
 
 The rest of the code is same as that in Case 1.
 
-# How testing was carried out  <a name="testing"></a>
+# 📊 How testing was carried out  <a name="testing"></a> #
 
 - The number of test cases was atleast 100 to get statistically meaningful results. 
 
@@ -209,9 +209,9 @@ Here are the resuls of testing. The average time per test case (in microseconds)
 | 500              | 100                   |  2263                 | 131762                                |     98.2           |
 | 1000             | 200                   |  172990               | 5794911                                  | 97.0            |
 
-# Current limitation <a name="limitation"></a>
+# 🚫 Current limitation <a name="limitation"></a>
 `a` and `b` must have less than 2^32 digits because string data type can only store 2^32 characters.
 
-# Improvements <a name="improvement"></a>
+# 🔮 Improvements <a name="improvement"></a>
 - Store `sum` and `carry` as strings instead of long long. 
 
