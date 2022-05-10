@@ -55,7 +55,7 @@ Example :
 
 The pattern continues indefinitely for any number of digits.
 
-I don't have a formal proof of why this algorithm works but if we compare the grade-school algorithm and this algorithm side-by-side, there are some similarities.  
+There's no formal proof of why this algorithm works but if we compare the grade-school algorithm and this algorithm side-by-side, there are some similarities.  
 ![image](https://user-images.githubusercontent.com/65414576/155765960-2ec47174-1825-4c9d-8fa9-94a6a6086361.png)
 
 The advantage of the criss-cross algorithm over the grade-school algorithm is that it works with smaller numbers (it adds single-digit products and resets the sum each time).
@@ -108,12 +108,12 @@ The number of 1-digit multiplication (or the number of lines drawn) at each step
 | 2n-1   | 1        | 
 
 At each step, we will compute the sum of all the 1-digit multiplications required. From this sum we will obtain the carry for the next step and a digit of our answer. 
-
+### Time complexity ###
 The total number of single digit product is `n^2 + n - 1`  In comparison, the total number of single digit products for the Karatsuba algorithm is `n^(log(3))` where log is the log base 2.
 
 ![image](https://user-images.githubusercontent.com/65414576/155828159-ae742681-dace-43b3-b0f9-542745d9b108.png)
 
-As the number of digits in the integers being multiplied tends to infinity, the karatsuba algorithm will perform better. However, for relatively large numbers (having less than 10,000 digits), the karatsuba algorithm performs worse. 
+As the number of digits in the integers being multiplied tends to infinity, the karatsuba algorithm will perform better. However, for relatively small numbers (having less than 10,000 digits), the karatsuba algorithm performs worse. 
 
 ### The pseudocode for Case 1 ###
 ```
