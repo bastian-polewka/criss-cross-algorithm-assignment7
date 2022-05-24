@@ -9,7 +9,7 @@
 
 
 # 🔰 Introduction  <a name="intro"></a>
-Also known as the Criss-Cross multiplication algorithm, this 50-lines long algorithm, requiring no advanced math techniques, multiplies large positive integers in string format and returns the exact answer in string format. Multiplication of 1000-digit string numbers (numbers greater than 10^100) can be done almost instantly. This algorithm is nearly twice as fast as the Karatsuba algorithm when the number of digits is below 1000.
+Also known as the Criss-Cross multiplication algorithm, this $50$-lines long algorithm, requiring no advanced math techniques, multiplies large positive integers in string format and returns the exact answer in string format. Multiplication of 1000-digit string numbers ($>10^{100}$) can be done almost instantly. This algorithm is nearly twice as fast as the Karatsuba algorithm when the number of digits is below 1000.
 
 The aim of this repository is give a concise explanation of this unpopular algorithm as well as to explain my implementation of the algorithm using C++. 
 
@@ -18,7 +18,7 @@ The Criss-Cross algorithm comes from Vedic mathematics, a compendium of tricks f
 More details about Vedic math can be found [here](https://github.com/KVBharatBhushan/Vedic-Maths)
 
 ## Time complexity ##
-![image](https://user-images.githubusercontent.com/65414576/155485833-6879c3a5-96af-46da-8bd8-24ec270fc61a.png)
+Time complexity : $\mathbb O(n^2)$
 
 Worst case scenario is when the 2 digits have the same number of digits. 
 
@@ -28,7 +28,7 @@ More explanation about the time complexity is found [below](#Case1).
 ```cpp
 vedic(a, b)
 ``` 
-where a, b are **positive integers in string format**.
+where $a, b$ are **positive integers in string format**.
 
 # 📰 Criss-Cross multiplication algorithm <a name="Cross"></a>
 
@@ -109,11 +109,11 @@ The number of 1-digit multiplication (or the number of lines drawn) at each step
 
 At each step, we will compute the sum of all the 1-digit multiplications required. From this sum we will obtain the carry for the next step and a digit of our answer. 
 ### Time complexity ###
-The total number of single digit product is `n^2 + n - 1`  In comparison, the total number of single digit products for the Karatsuba algorithm is `n^(log(3))` where log is the log base 2.
+The total number of single digit product is $n^2 + n - 1$  In comparison, the total number of single digit products for the Karatsuba algorithm is $n^{\log_2 3}.$
 
 ![image](https://user-images.githubusercontent.com/65414576/155828159-ae742681-dace-43b3-b0f9-542745d9b108.png)
 
-As the number of digits in the integers being multiplied tends to infinity, the karatsuba algorithm will perform better. However, for relatively small numbers (having less than 10,000 digits), the karatsuba algorithm performs worse. 
+As the number of digits in the integers being multiplied tends to infinity, the Karatsuba algorithm will perform better. However, for relatively small numbers (having less than 10,000 digits), the Karatsuba algorithm performs worse. 
 
 ### The pseudocode for Case 1 ###
 ```
@@ -210,8 +210,8 @@ Here are the resuls of testing. The average time per test case (in microseconds)
 | 1000             | 200                   |  172990               | 5794911                                  | 97.0            |
 
 # 🚫 Current limitation <a name="limitation"></a>
-`a` and `b` must have less than 2^32 digits because string data type can only store 2^32 characters.
+$a$ and $b$ must have less than $2^{32}$ digits because string data type can only store $2^{32}$ characters.
 
 # 🔮 Improvements <a name="improvement"></a>
-- Store `sum` and `carry` as strings instead of long long. 
+- Store `sum` and `carry` as strings instead of long long data type. 
 
