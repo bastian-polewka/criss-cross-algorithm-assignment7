@@ -1,6 +1,6 @@
 # Table of contents
 1. [Introduction](#intro)
-2. [Criss-Cross multiplication algorithm](#Cross)
+2. [Algorithm explanation](#Cross)
 3. [Code implementation + explanation](#CodeImp)
 4. [How testing was carried out + Results](#testing)
 5. [Limitation](#limitation)
@@ -30,10 +30,10 @@ vedic(a, b)
 ``` 
 where $a, b$ are **positive integers in string format**.
 
-# 📰 Criss-Cross multiplication algorithm <a name="Cross"></a>
+# 📰 Algorithm explanation <a name="Cross"></a>
 
-Steps  :
-- There's a specific set of patterns to follow when carrying out single digit products. (More about this below).
+## Steps ## 
+- There is a set of patterns to follow when carrying out single digit products. (More about this below).
 - For each pattern, compute the sum of all the required single digit product.
 - Add carry (if any) to this sum.
 - The last digit of this result is concatenated to the left of our final answer.
