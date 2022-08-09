@@ -1,4 +1,5 @@
 string vedic1(string a, string b) {
+    if (a == "0" || b == "0")return "0";
     //a must have same number/more digits than b
     if (b.length() > a.length()) { string t = b; b = a; a = t; }
 
