@@ -2,12 +2,16 @@
 #include <string>
 #include <regex>
 #include <chrono>
+#include <random>
+
 #define ll long long
 using namespace std;
 using namespace std::chrono;
 
-string add(string a, string b)
-{
+std::random_device rd; // obtain a random number from hardware
+std::mt19937 gen(rd()); // seed the generator
+
+string add(string a, string b){
     a = string(max(a.size(), b.size()) + 1 - a.size(), '0') + a;
     b = string(a.size() - b.size(), '0') + b;
     for (int i = a.size() - 1, carry = 0; i >= 0; i--)
@@ -82,7 +86,7 @@ string karatsuba(string n1, string n2) {
 
 }
 
-string vedic1(string a, string b) {
+string vedic(string a, string b) {
     if (b.length() > a.length()) { string t = b; b = a; a = t; }
 
     const ll asize = static_cast<ll>(a.size());
@@ -97,8 +101,8 @@ string vedic1(string a, string b) {
     for (ll step = 1;step <= totalsteps; step++) {
         sum = 0; //reset sum
 
-        if (step <= asize) {lines = step;}
-        else {lines= asize - (step- asize);}
+        if (step <= asize) { lines = step; }
+        else { lines = asize - (step - asize); }
 
         if (min < 0) {
             min = 0;
@@ -126,20 +130,20 @@ string vedic1(string a, string b) {
     return ans;
 }
 
-ll TimeAlgorithm(int algorithm, string p, string q) {
+ll TimeAlgorithm(string algorithm, string p, string q) {
 
-    if (algorithm == 0) { //time vedic algorithm
+    if (algorithm == "vedic") { //time vedic algorithm
         auto start = high_resolution_clock::now();
-        vedic1(p, q);
+        vedic(p, q);
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
-        return   duration.count(); 
+        return   duration.count();
 
     }
 
-    if (algorithm == 1) { //time karatsuba
+    if (algorithm == "karatsuba") { //time karatsuba
         auto start = high_resolution_clock::now();
-        karatsuba(p,q);
+        karatsuba(p, q);
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
         return  duration.count();
@@ -147,51 +151,57 @@ ll TimeAlgorithm(int algorithm, string p, string q) {
     }
 }
 
-string GenerateRandomNumber(ll n) {
+string GenerateFixedRandomNumber(ll n) {
+    std::uniform_int_distribution<> distr(0, 9); // inclusive range
+
     //Generates a random positive integer having n digits. n > 0
-    string num = "0"; 
+    string num = "0";
 
     //first digit must be non-zero.
     while (num == "0") {
-        num = to_string(rand() % 10);
+        num = to_string(distr(gen));
     }
     n--;
     //other digits can be 0-9
     while (n--) {
-        num += to_string(rand() % 10); 
+        num += to_string(distr(gen));
     }
     return num;
 }
 
-
-int main() {   
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    ll t = 50; //number of test cases
-    ll c = 0; //number of times vedic() took less time than karatsuba().
-    ll vedictotal = 0;
-    ll karatsubatotal = 0;
+    ll test_cases_count = 50; 
+    ll vedic_win_count = 0; //number of times vedic() took less time than karatsuba().
+    ll vedic_total_time = 0; 
+    ll karatsuba_total_time = 0; 
 
     double diff = 0;
-    for (ll i = 0;i < t;i++) {
-           if (i % 10 == 0) { cout <<i << "\n";}
-            ll NumberOfDigits = 5000; //this number is varied
-            string n1 = GenerateRandomNumber(NumberOfDigits); 
-            string n2 = GenerateRandomNumber(NumberOfDigits);
+    ll NumberOfDigits = 500; 
 
-            ll t0 = TimeAlgorithm(0, n1, n2); //time taken by algo 0
-            ll t1 = TimeAlgorithm(1, n1, n2); //time taken algo 1
-            vedictotal += t0;
-            karatsubatotal += t1;
+    for (ll i = 0;i < test_cases_count;i++) {
+        if (i % 10 == 0) 
+            cout << i << "/" << test_cases_count << "\n";
 
-            if (t0<t1) {
-                diff += (1 - (double(t0) / double(t1))); //by how much t0 is smaller
-                c++;
-            }
+        //generate 2 random numbers with the same number of digits
+        string n1 = GenerateFixedRandomNumber(NumberOfDigits);
+        string n2 = GenerateFixedRandomNumber(NumberOfDigits);
+
+        ll vedic_time = TimeAlgorithm("vedic", n1, n2); //time taken by vedic to multiply n1 and n2
+        ll karatsuba_time = TimeAlgorithm("karatsuba", n1, n2); //time taken by karatsuba to multiply n1 and n2
+
+        vedic_total_time += vedic_time;
+        karatsuba_total_time += karatsuba_time;
+
+        if (vedic_time < karatsuba_time) {
+            diff += (1 - (double(vedic_time) / double(karatsuba_time))); //by how much vedic_time is smaller
+            vedic_win_count++;
+        }
     }
-    cout << "Averate time vedic() :" << vedictotal / t << "\n";
-    cout << "Averate time karatsuba() :" << karatsubatotal / t << "\n";
-    cout << "In "<< (100 * c) / (t)<< "% of test cases Algorithm 0 took less time than Algorithm 1. " << endl;
-    cout << "On average, Algorithm 0 took " << (100 * diff) / double(t) << "% less time than Algorithm 1 \n";
+    cout << "Average time taken by vedic() :" << vedic_total_time / test_cases_count << " microseconds\n";
+    cout << "Average time taken by karatsuba() :" << karatsuba_total_time / test_cases_count << "microseconds\n";
+    cout << "In " << (100 * vedic_win_count) / (test_cases_count) << "% of test cases Algorithm 0 took less time than Algorithm 1. " << endl;
+    cout << "On average, vedic took " << (100 * diff) / double(test_cases_count) << "% less time than karatsuba \n";
 }
