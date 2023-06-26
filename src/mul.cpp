@@ -53,9 +53,15 @@ string Mul::getB() {
 }
 
 string Mul::vedic() {
+  // corner cases
   if (a == "0" || b == "0")
     return "0";
-  // a must have same number/more digits than b
+  if (a == "1")
+    return b;
+  if (b == "1")
+    return a;
+
+  // swap strings, if needed, so that `a` has the same number/more digits than b
   if (b.length() > a.length()) {
     string t = b;
     b = a;
