@@ -21,7 +21,14 @@ TEST_CASE("Constructor") {
   SUBCASE("Numeric strings with no spaces") {
     CHECK_NOTHROW(Mul("1442", "99"));
   }
+
   SUBCASE("Long numeric strings") {
     CHECK_NOTHROW(Mul(string(1000, '9'), string(1000, '5')));
+  }
+
+  SUBCASE("Numeric strings with leading zeroes") {
+    Mul calc("001324", "00000000");
+    CHECK_EQ(calc.getA(), "1324");
+    CHECK_EQ(calc.getB(), "0");
   }
 }
