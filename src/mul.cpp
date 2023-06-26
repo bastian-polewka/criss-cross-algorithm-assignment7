@@ -1,17 +1,32 @@
 #include "mul.h"
 
-Mul::Mul(string n1, string n2) {
-  // remove spaces from strings : https://stackoverflow.com/a/83481/17627866
-  std::string::iterator end_pos = std::remove(n1.begin(), n1.end(), ' ');
-  n1.erase(end_pos, n1.end());
+string Mul::sanitize(string n) {
+  // remove spaces from string: https://stackoverflow.com/a/83481/17627866
+  std::string::iterator end_pos = std::remove(n.begin(), n.end(), ' ');
+  n.erase(end_pos, n.end());
 
-  end_pos = std::remove(n2.begin(), n2.end(), ' ');
-  n2.erase(end_pos, n2.end());
+  // remove leading zeroes from string:
+  // https://stackoverflow.com/a/25726706/17627866
+  size_t zeroCount = count(n.begin(), n.end(), '0');
+  if (zeroCount == n.size() && n.size() != 0)
+    n = "0";
+  else {
+    n.erase(0, n.find_first_not_of('0'));
+  }
+  return n;
+}
+
+Mul::Mul(string n1, string n2) {
+  n1 = sanitize(n1);
+  n2 = sanitize(n2);
 
   // validate strings
   if (!validate(n1) || !validate(n2)) {
     throw std::invalid_argument("Invalid string inputs");
   }
+
+  a = n1;
+  b = n2;
 }
 
 bool Mul::validate(string k) {
@@ -27,6 +42,14 @@ bool Mul::validate(string k) {
   }
 
   return 1;
+}
+
+string Mul::getA() {
+  return a;
+}
+
+string Mul::getB() {
+  return b;
 }
 
 string Mul::vedic() {
