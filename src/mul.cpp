@@ -1,6 +1,33 @@
 #include "mul.h"
 
-Mul::Mul(string n1, string n2) {}
+Mul::Mul(string n1, string n2) {
+  // remove spaces from strings : https://stackoverflow.com/a/83481/17627866
+  std::string::iterator end_pos = std::remove(n1.begin(), n1.end(), ' ');
+  n1.erase(end_pos, n1.end());
+
+  end_pos = std::remove(n2.begin(), n2.end(), ' ');
+  n2.erase(end_pos, n2.end());
+
+  // validate strings
+  if (!validate(n1) || !validate(n2)) {
+    throw std::invalid_argument("Invalid string inputs");
+  }
+}
+
+bool Mul::validate(string k) {
+  // reject empty strings
+  if (k.length() == 0) {
+    return 0;
+  }
+
+  // reject strings containing non-numeric characters
+  // https://stackoverflow.com/a/8889045/17627866
+  if (k.find_first_not_of("0123456789") != std::string::npos) {
+    return 0;
+  }
+
+  return 1;
+}
 
 string Mul::vedic() {
   if (a == "0" || b == "0")
