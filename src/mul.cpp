@@ -73,12 +73,12 @@ string Mul::vedic(string a, string b) {
   ll totalsteps = asize + bsize - 1;
   string ans = "";
   ll max = asize - 1, min = bsize - 1;
-  ll sum = 0, carry = 0;
+  string sum = "0", carry = "0";
   ll lines = 0;  // number of multiplications on each step
 
   // Each step finds 1 digit of the answer
   for (ll step = 1; step <= totalsteps; step++) {
-    sum = 0;  // reset sum
+    sum = "0";  // reset sum
 
     if (step <= asize) {
       lines = step;
@@ -102,17 +102,18 @@ string Mul::vedic(string a, string b) {
     // cross-multiply
     ll i = max, j = min;
     for (ll k = 0; k < lines; k++) {
-      sum += (a[i] - '0') * (b[j] - '0');
+      const ll digitProd = (a[i] - '0') * (b[j] - '0');
+      sum = add(sum, std::to_string(digitProd));
       i--;
       j++;
     }
-    sum += carry;
-    carry = sum / 10;
-    ans = std::to_string(sum % 10) + ans;
+    sum = add(sum, carry);
+    carry = (sum.size() == 1) ? "0" : sum.substr(0, sum.size() - 1);
+    ans = sum[sum.size() - 1] + ans;
     min--;
   }
-  if (carry != 0) {
-    ans = std::to_string(carry) + ans;
+  if (carry != "0") {
+    ans = carry + ans;
   }
   return ans;
 }
