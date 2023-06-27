@@ -25,8 +25,8 @@ Mul::Mul(string n1, string n2) {
     throw std::invalid_argument("Invalid string inputs");
   }
 
-  a = n1;
-  b = n2;
+  multiplicand = n1;
+  multiplier = n2;
 }
 
 bool Mul::validate(string k) {
@@ -44,15 +44,15 @@ bool Mul::validate(string k) {
   return 1;
 }
 
-string Mul::getA() {
-  return a;
+string Mul::getMultiplicand() {
+  return multiplicand;
 }
 
-string Mul::getB() {
-  return b;
+string Mul::getMultiplier() {
+  return multiplier;
 }
 
-string Mul::vedic() {
+string Mul::vedic(string a, string b) {
   // corner cases
   if (a == "0" || b == "0")
     return "0";
@@ -115,4 +115,98 @@ string Mul::vedic() {
     ans = std::to_string(carry) + ans;
   }
   return ans;
+}
+
+string Mul::vedic() {
+  return vedic(multiplicand, multiplier);
+}
+
+string Mul::add(string n1, string n2) {
+  // make n1 and n2 the same length
+  n1 = string(std::max(n1.size(), n2.size()) + 1 - n1.size(), '0') + n1;
+  n2 = string(n1.size() - n2.size(), '0') + n2;
+  for (int i = n1.size() - 1, carry = 0; i >= 0; i--) {
+    int sum = n1[i] + n2[i] - 96 + carry;
+    carry = sum / 10;
+    n1[i] = sum % 10 + '0';
+  }
+  // remove leading zeroes
+  int i = n1.find_first_not_of('0');
+  return 0 <= i ? n1.substr(i) : n1.substr(0, 1);
+}
+
+string Mul::subtract(string a, string b) {
+  string str = "";
+  int n1 = a.length(), n2 = b.length();
+  int diff = n1 - n2;
+  int carry = 0;
+
+  for (int i = n2 - 1; i >= 0; i--) {
+    int sub = ((a[i + diff] - '0') - (b[i] - '0') - carry);
+    if (sub < 0) {
+      sub = sub + 10;
+      carry = 1;
+    } else
+      carry = 0;
+    str.push_back(sub + '0');
+  }
+
+  // subtract remaining digits of str1[]
+  for (int i = n1 - n2 - 1; i >= 0; i--) {
+    if (a[i] == '0' && carry) {
+      str.push_back('9');
+      continue;
+    }
+    int sub = ((a[i] - '0') - carry);
+    if (i > 0 || sub > 0)  // remove preceding 0's
+      str.push_back(sub + '0');
+    carry = 0;
+  }
+
+  reverse(str.begin(), str.end());
+
+  // remove leading zeroes
+  int i = str.find_first_not_of('0');
+  return 0 <= i ? str.substr(i) : str.substr(0, 1);
+}
+
+string Mul::karatsuba(string n1, string n2) {
+  if (n1.length() < 2 && n2.length() < 2) {
+    return std::to_string(stoi(n1) * stoi(n2));
+  }
+
+  ll n = std::max(n1.length(), n2.length());
+  ll half = n / 2;
+
+  string a, b, c, d;
+  if (n1.length() - half <= 0) {
+    n1 = "0";
+    n2 = n1;
+  } else {
+    n1 = n1.substr(0, n1.length() - half);
+    n2 = n1.substr(n1.length() - half, half);
+  }
+
+  if (n2.length() - half <= 0) {
+    c = "0";
+    d = n2;
+  } else {
+    c = n2.substr(0, n2.length() - half);
+    d = n2.substr(n2.length() - half, half);
+  }
+
+  string ac = karatsuba(n1, c);
+  string bd = karatsuba(n2, d);
+  string ad_plus_bc = karatsuba(add(n1, n2), add(c, d));
+  ad_plus_bc = subtract(ad_plus_bc, ac);
+  ad_plus_bc = subtract(ad_plus_bc, bd);
+
+  ac += string(2 * half, '0');
+  ad_plus_bc += string(half, '0');
+
+  return add(add(ac, ad_plus_bc), bd);
+}
+
+string Mul::karatsuba() {
+  return karatsuba(multiplicand, multiplier);
 }
