@@ -171,41 +171,37 @@ string Mul::subtract(string a, string b) {
   return 0 <= i ? str.substr(i) : str.substr(0, 1);
 }
 
-string Mul::karatsuba(string n1, string n2) {
-  if (n1.length() < 2 && n2.length() < 2) {
-    return std::to_string(stoi(n1) * stoi(n2));
-  }
+string Mul::karatsuba(string lhs, string rhs) {
+  // Reference: https://drawar.github.io/karatsuba-cpp/
+  const ll s1 = lhs.size();
+  const ll s2 = rhs.size();
+  ll length = std::max(s1, s2);
 
-  ll n = std::max(n1.length(), n2.length());
-  ll half = n / 2;
+  lhs = string(length - s1, '0') + lhs;
+  rhs = string(length - s2, '0') + rhs;
 
-  string a, b, c, d;
-  if (n1.length() - half <= 0) {
-    n1 = "0";
-    n2 = n1;
-  } else {
-    n1 = n1.substr(0, n1.length() - half);
-    n2 = n1.substr(n1.length() - half, half);
-  }
+  if (length == 1)
+    return std::to_string((lhs[0] - '0') * (rhs[0] - '0'));
 
-  if (n2.length() - half <= 0) {
-    c = "0";
-    d = n2;
-  } else {
-    c = n2.substr(0, n2.length() - half);
-    d = n2.substr(n2.length() - half, half);
-  }
+  string lhs0 = lhs.substr(0, length / 2);
+  string lhs1 = lhs.substr(length / 2, length - length / 2);
+  string rhs0 = rhs.substr(0, length / 2);
+  string rhs1 = rhs.substr(length / 2, length - length / 2);
 
-  string ac = karatsuba(n1, c);
-  string bd = karatsuba(n2, d);
-  string ad_plus_bc = karatsuba(add(n1, n2), add(c, d));
-  ad_plus_bc = subtract(ad_plus_bc, ac);
-  ad_plus_bc = subtract(ad_plus_bc, bd);
+  string p0 = karatsuba(lhs0, rhs0);
+  string p1 = karatsuba(lhs1, rhs1);
+  string p2 = karatsuba(add(lhs0, lhs1), add(rhs0, rhs1));
+  string p3 = subtract(p2, add(p0, p1));
 
-  ac += string(2 * half, '0');
-  ad_plus_bc += string(half, '0');
+  for (int i = 0; i < 2 * (length - length / 2); i++)
+    p0.append("0");
+  for (int i = 0; i < length - length / 2; i++)
+    p3.append("0");
 
-  return add(add(ac, ad_plus_bc), bd);
+  string result = add(add(p0, p1), p3);
+
+  return result.erase(
+      0, std::min(result.find_first_not_of('0'), result.size() - 1));
 }
 
 string Mul::karatsuba() {
