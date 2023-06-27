@@ -28,8 +28,8 @@ TEST_CASE("Constructor") {
 
   SUBCASE("Numeric strings with leading zeroes") {
     Mul calc("001324", "00000000");
-    CHECK_EQ(calc.getA(), "1324");
-    CHECK_EQ(calc.getB(), "0");
+    CHECK_EQ(calc.getMultiplicand(), "1324");
+    CHECK_EQ(calc.getMultiplier(), "0");
   }
 }
 

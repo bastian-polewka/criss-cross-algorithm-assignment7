@@ -6,9 +6,8 @@ using std::string;
 
 class Mul {
  private:
-  string a;
-  string b;
-  string result;
+  string multiplicand;  // first number
+  string multiplier;    // second number
 
   /**
    * @brief Checks if string is valid. To be valid
@@ -20,21 +19,44 @@ class Mul {
    */
   bool validate(string k);
 
-/**
- * @brief Removes spaces and leading zeroes from string
- * 
- * @param n Input numeric string
- * @return string Final string
- */
+  /**
+   * @brief Removes spaces and leading zeroes from string
+   *
+   * @param n Input numeric string
+   * @return string Final string
+   */
   string sanitize(string n);
+
+  string add(string n1, string n2);
+
+  string subtract(string n1, string n2);
+
+  string karatsuba(string n1, string n2);
+
+  string vedic(string n1, string n2);
 
  public:
   Mul(string n1, string n2);
 
+  /**
+   * @brief Performs criss-cross multiplication on two integers.
+   *
+   * @return string
+   */
   string vedic();
 
+  /**
+   * @brief Performs multiplication using schoolboy algorithm
+   *
+   * @return string
+   */
   string naive();
 
+  /**
+   * @brief Performs multiplication using karatsuba algorithm
+   *
+   * @return string
+   */
   string karatsuba();
 
   /**
@@ -42,12 +64,12 @@ class Mul {
    *
    * @return string
    */
-  string getA();
+  string getMultiplicand();
 
   /**
    * @brief Returns second integer part of multiplication
    *
    * @return string
    */
-  string getB();
+  string getMultiplier();
 };
