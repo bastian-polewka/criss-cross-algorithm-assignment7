@@ -39,8 +39,8 @@ std::vector<std::vector<string>> getQuestions(ll n = 50, ll digitCount = 1000) {
   std::vector<std::vector<string>> result;
 
   for (ll i = 0; i < n; i++) {
-    string multiplicand = getRandomNumber(1000);
-    string multiplier = getRandomNumber(1000);
+    string multiplicand = getRandomNumber(digitCount);
+    string multiplier = getRandomNumber(digitCount);
     result.push_back({multiplicand, multiplier});
   }
   return result;
@@ -54,8 +54,10 @@ int main() {
 
   // initialise parameters of benchmark
   const ll totalTestCases =
-      5;  // number of multiplications to be perfomed for each algorithm
-  ll digitCount = 3;  // number of digits in multiplier and multiplicand
+      100;  // number of multiplications to be perfomed for each algorithm
+  ll digitCount = 100;  // number of digits in multiplier and multiplicand
+
+  ll win = 0;
 
   // generate numbers to be multiplied
   std::vector<std::vector<string>> quests =
@@ -77,6 +79,8 @@ int main() {
     // get numbers to be multiplied
     multiplicand = question[0];
     multiplier = question[1];
+    // std::cout << "Calculating " << multiplicand << " x " << multiplier
+    //           << std::endl;
 
     // initialise calculator
     Mul calc(multiplicand, multiplier);
@@ -99,8 +103,12 @@ int main() {
     kResults.push_back(product);
     kDuration.push_back(clock.duration());
 
+    if (kDuration.back() > vDuration.back())
+      win++;
+
     // products calculated by both algoritm should be equal
     assert(vResults.back() == kResults.back());
   }
+  std::cout << "Vedic won " << win << " times\n";
   std::cout << "Saving results to file...\n";
 }
