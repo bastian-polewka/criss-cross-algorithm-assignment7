@@ -5,10 +5,7 @@
 #include <vector>
 #include "../src/mul.h"
 #include "timer.h"
-
 #define ll long long
-using namespace std;
-using namespace std::chrono;
 
 std::random_device rd;   // obtain a random number from hardware
 std::mt19937 gen(rd());  // seed the generator
@@ -22,24 +19,24 @@ std::mt19937 gen(rd());  // seed the generator
 string getRandomNumber(ll n) {
   assert(n > 0);
   std::uniform_int_distribution<> distr(0, 9);  // inclusive range
-  string num = "0";
+  string num;
 
-  // first digit must be non-zero.
+  // generate first non-zero digit.
   do {
-    num = to_string(distr(gen));
+    num = std::to_string(distr(gen));
   } while (num == "0");
-
   n--;
 
-  // other digits can be 0-9
+  // generate remaining digits which can be 0-9
   while (n--) {
-    num += to_string(distr(gen));
+    num += std::to_string(distr(gen));
   }
+
   return num;
 }
 
-vector<vector<string>> getQuestions(ll n = 50, ll digitCount = 1000) {
-  vector<vector<string>> result;
+std::vector<std::vector<string>> getQuestions(ll n = 50, ll digitCount = 1000) {
+  std::vector<std::vector<string>> result;
 
   for (ll i = 0; i < n; i++) {
     string multiplicand = getRandomNumber(1000);
@@ -50,50 +47,60 @@ vector<vector<string>> getQuestions(ll n = 50, ll digitCount = 1000) {
 }
 
 int main() {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
+  std::ios::sync_with_stdio(0);
+  std::cin.tie(0);
 
-  const ll test_cases_count =
-      50;  // number of multiplications to be perfomed for each algorithm
-  ll digitCount = 500;  // number of digits in multiplier and multiplicand
-  vector<vector<string>> quests =
-      getQuestions(50, digitCount);  // generate numbers to be multiplied
-  vector<string> vResults;
-  vector<string> kResults;
+  std::cout << "Running benchmarks...\n";
 
-  ll vedic_win_count =
-      0;  // number of times vedic() took less time than karatsuba()
-  ll vedic_total_time = 0;
-  ll karatsuba_total_time = 0;
-  double diff = 0;
+  // initialise parameters of benchmark
+  const ll totalTestCases =
+      5;  // number of multiplications to be perfomed for each algorithm
+  ll digitCount = 3;  // number of digits in multiplier and multiplicand
 
-  string n1, n2, product;
+  // generate numbers to be multiplied
+  std::vector<std::vector<string>> quests =
+      getQuestions(totalTestCases, digitCount);
+
+  // create arrays to store products calculated by each algorithm
+  std::vector<string> vResults;
+  std::vector<string> kResults;
+
+  // create arrays to store time taken by each algorithm for each product
+  std::vector<double> vDuration;
+  std::vector<double> kDuration;
+
+  // Initialise timer
+  Timer clock;
+
+  string multiplicand, multiplier, product;
   for (auto question : quests) {
-    // get numbers are to be multiplied
-    n1 = question[0];
-    n2 = question[1];
+    // get numbers to be multiplied
+    multiplicand = question[0];
+    multiplier = question[1];
 
     // initialise calculator
-    Mul calc(n1, n2);
-
-    // Initialise two timers, one for each algorithm
-    Timer vTimer;
-    Timer kTimer;
+    Mul calc(multiplicand, multiplier);
 
     // Perform vedic multiplication
-    vTimer.start();
+    clock.start();
     product = calc.vedic();
-    vTimer.stop();
+    clock.stop();
 
-    // save product to array
+    // save product and time to array
     vResults.push_back(product);
+    vDuration.push_back(clock.duration());
 
     // Perform karatsuba multiplication
-    vTimer.start();
+    clock.start();
     product = calc.karatsuba();
-    vTimer.stop();
+    clock.stop();
 
-    // save product to array
+    // save product and time to array
     kResults.push_back(product);
+    kDuration.push_back(clock.duration());
+
+    // products calculated by both algoritm should be equal
+    assert(vResults.back() == kResults.back());
   }
+  std::cout << "Saving results to file...\n";
 }
