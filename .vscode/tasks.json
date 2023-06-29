@@ -24,6 +24,30 @@
         "isDefault": true
       },
       "detail": "Run doctest tests"
+    },
+    {
+      "type": "cppbuild",
+      "label": "Build and run benchmarks",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-std=c++17",
+        "-fdiagnostics-color=always",
+        "-g",
+        "${workspaceFolder}/src/*.cpp",
+        "${workspaceFolder}/benchmarks/*.cpp",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}.exe",
+        "-W"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Run benchmarks"
     }
   ],
   "version": "2.0.0"
