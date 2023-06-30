@@ -72,6 +72,16 @@
     "thread": "cpp",
     "cinttypes": "cpp",
     "typeinfo": "cpp",
-    "cassert": "cpp"
+    "cassert": "cpp",
+    "bitset": "cpp",
+    "forward_list": "cpp",
+    "list": "cpp",
+    "executor": "cpp",
+    "io_context": "cpp",
+    "netfwd": "cpp",
+    "regex": "cpp",
+    "timer": "cpp",
+    "future": "cpp",
+    "shared_mutex": "cpp"
   }
 }
