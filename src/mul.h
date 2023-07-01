@@ -35,6 +35,8 @@ class Mul {
 
   string vedic(string n1, string n2);
 
+  string basicVedic(string n1, string n2);
+
  public:
   Mul(string n1, string n2);
 
@@ -72,4 +74,14 @@ class Mul {
    * @return string
    */
   string getMultiplier();
+
+  /**
+   * @brief Performs criss-cross multiplication on two integers.
+   * This function does not utilize any helper functions for addition
+   * and subtraction and is therefore faster than vedic(). However the range of
+   * numbers that it can multiply is more limited.
+   *
+   * @return string
+   */
+  string basicVedic();
 };
