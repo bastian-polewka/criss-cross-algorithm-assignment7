@@ -5,7 +5,7 @@ A 50-lines algorithm for multiplying large positive integers in string format. F
 
 <img src="3x3.gif"  width="300" height="300">
 
-Read more about the algorithm in this [post](https://creme332.github.io/creamy-notes/posts/criss-cross-multiplication/).
+Read more about the algorithm in this [post](https://creme332.github.io/posts/criss-cross-multiplication/).
 
 
 ## Installation
