@@ -7,14 +7,6 @@ A 50-lines algorithm for multiplying large positive integers in string format. F
 
 Read more about the algorithm in this [post](https://creme332.github.io/posts/criss-cross-multiplication/).
 
-
-## Installation
-
-To install project:
-```
-git clone git@github.com:creme332/criss-cross-algorithm.git
-```
-
 ## Usage
 Import `mul.h` in your program and initialise a `Mul` object as follows:
 ```cpp
@@ -29,32 +21,6 @@ The `Mul` class has  3 methods for multiplication:
 | `basicVedic()` | A simpler and faster implementation of the criss-cross algorithm but is more limited since it uses basic arithmetic operators for addition and subtraction. |
 | `vedic()`      | A version of `basicVedic()` that uses helper functions for  adding and subtracting large string numbers.                                                        |
 | `karatsuba()`  | Uses the Karatsuba algorithm for multiplication. Algorithm uses helper functions for adding and subtracting large string numbers.                       |
-
-## Run benchmarks
-To run benchmarks:
-```
-g++ benchmarks/main.cpp benchmarks/timer.cpp src/mul.cpp -W
-./a.out
-```
-A folder `output` will be created inside the `benchmarks` folder. This new folder will contain the following files:
-
-| File name     | Content                                                                                                                                      |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `input.txt`   | A list of multiplicands and multipliers which were generated during runtime.                                                                 |
-| `time.txt`    | Each line contains 2 values representing the time taken for vedic and karatsuba algorithms respectively                                      |
-| `product.txt` | Each line contains 2 values representing the product calculated by vedic and karatsuba algorithms respectively. These values should be same. |
-
-
-## Run tests
-
-```bash
-g++ test_runner.cpp tests/tests.cpp src/mul.cpp -W
-./a.out
-```
-
-## To-do
-
-* [ ] Use Google Benchmark for benchmarks
 
 ## References
 
