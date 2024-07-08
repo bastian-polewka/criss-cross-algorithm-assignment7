@@ -1,5 +1,4 @@
 # Criss-Cross Multiplication 
-![Badge for test workflow](https://github.com/creme332/criss-cross-algorithm/actions/workflows/test.yml/badge.svg)
 
 A 50-lines algorithm for multiplying large positive integers in string format. For numbers having less than 100 digits, it outperforms the Karatsuba algorithm by as much as 50%.
 
